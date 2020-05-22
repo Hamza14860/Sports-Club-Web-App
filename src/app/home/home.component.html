@@ -1,3 +1,122 @@
-<nav>
-    <a routerLinkActive="active" class="btn btn-warning" routerLink="/signup">Sign Up</a>
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" routerLink="/home">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/home" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+           -->
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a routerLink="/signup" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+              SignIn / SignUp
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
 </nav>
+  <!-- Navbar -->
+
+
+  <!--HEADER-->
+
+<div class="view" style="background-image: url('./assets/images/back999999.jpg'); background-repeat: no-repeat; background-size: cover;">
+   
+  <!-- Mask & flexbox options-->
+  <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+    <!-- Content -->
+    <div class="text-center mx-5 fadeIn" [ngStyle]="{marginTop:'150px' }">
+        <!-- <div class="mb-4 text-center" >
+            <img src="assets/images/logo1.png" style="width: 200px;height: 200px;" />
+        </div> -->
+        <blockquote class="blockquote text-center">
+            <h1 class="display-4 redText" >
+                <strong>FAST SPORTS</strong>
+            </h1>
+            <footer class="blockquote-footer redText"><cite title="Source Title" >Train . Compete . Win</cite></footer>
+        </blockquote>
+        
+
+        <p class="md-4 d-none d-md-block redText">
+            <strong>A Sports Club with top class sporting facilities. </strong>
+        </p>
+
+      <a routerLink="/signup" class="btn btn-danger btn-lg">Join Now
+      </a>
+    </div>
+    <!-- Content -->
+
+  </div>
+  <!-- Mask & flexbox options-->
+
+</div>
+<!-- Header -->
+
+
+
+<!--BODY-->
+
+<!--BODY-->
+
+
+ <!--Footer-->
+ <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <hr class="my-4">
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-4">
+            <h6 class="redText">Contact Us</h6>
+					<p class="text-muted"><small>fast.sports@gmail.com</small></p>
+					<p class="text-muted"><small>00923452345321</small></p>
+          </div>
+          <div class="col-md-4">
+              <a class="btn btn-outline-danger redText"  role="button">About Us
+              </a>
+          </div>
+          <div class="col-md-4">
+            <h6 class="redText">Location</h6>
+            <p class="text-muted"><small>i-9/3, Islamabad</small></p>
+          </div>
+    </div>
+    
+
+    <hr class="my-4">
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 redText">
+      <small>© 2020 Copyright: </small>
+      <a href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank"><small> Hamza Azam, Anees ul Anwar, Bilal</small></a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+
