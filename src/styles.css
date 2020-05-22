@@ -3,8 +3,11 @@
 /* BASIC */
 
 html {
-  background-color: #56baed;
-}
+  /* background-color: #56baed; */
+  /* background-color: #f8e4e4c7; */
+  background-color: #d3cdcdc7;
+
+} 
 
 body {
   font-family: "Poppins", sans-serif;

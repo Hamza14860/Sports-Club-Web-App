@@ -21,3 +21,11 @@
 .redText{
     color: rgb(255,77,77);
 }
+
+.zoom {
+    transition-duration: 300ms;
+  }
+  
+.zoom:hover {
+    transform: scale(1.2)
+  }
