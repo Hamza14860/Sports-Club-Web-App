@@ -12,13 +12,21 @@ import {HomeComponent} from './home/home.component';
 
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
+import { PlayerComponent } from './player/player.component';
+import { PlayerHomeComponent } from './player/player-home/player-home.component';
+import { GameSessionComponent } from './player/game-session/game-session.component';
+
+
 
 import { AuthGuard } from './auth/auth.guard';
 
 
 
+
 const routes: Routes = [
   { path: 'admin-home', component: AdminHomeComponent } ,
+  { path: 'home', component: HomeComponent } ,
+
 
   { 
     path: 'signup', component: UserComponent,
@@ -29,8 +37,18 @@ const routes: Routes = [
     children: [{ path: '', component: SignInComponent}]
   },
   { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'player', component: PlayerComponent, canActivate: [AuthGuard] },
+  { 
+    path: 'playerhome', component: PlayerComponent,
+    children: [{ path: '', component: PlayerHomeComponent}]
+  },
+  { 
+    path: 'gamesession', component: PlayerComponent,
+    children: [{ path: '', component: GameSessionComponent}]
+  },
+  // { path: 'gamesession', component: GameSessionComponent } ,
 
-  { path: 'home', component: HomeComponent } ,
+
 
   {
     path: '',  redirectTo: 'home', pathMatch: 'full'

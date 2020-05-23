@@ -401,3 +401,8 @@ td.text-center {
 td.text-right {
   text-align: right;
 }
+
+
+.redText{
+  color: rgb(255,77,77);
+}

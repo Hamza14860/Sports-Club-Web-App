@@ -31,7 +31,9 @@ export class UserService {
   getUserProfile() {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
-
+  getPlayerHome() {
+    return this.http.get(environment.apiBaseUrl + '/playerHome');
+  }
 
   //Helper Methods
 

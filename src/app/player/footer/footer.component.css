@@ -1,0 +1,9 @@
+.page-footer,.top-nav-collapse{
+    background-color:#1C2331
+}
+.view,body,html{
+    height:100%
+}
+.redText{
+    color: rgb(255,77,77);
+}

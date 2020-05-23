@@ -19,6 +19,11 @@ import { UserService } from './service/user.service';
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { PlayerComponent } from './player/player.component';
+import { GameSessionComponent } from './player/game-session/game-session.component';
+import { FooterComponent } from './player/footer/footer.component';
+import { NavbarComponent } from './player/navbar/navbar.component';
+import { PlayerHomeComponent } from './player/player-home/player-home.component';
 
 
 @NgModule({
@@ -28,7 +33,12 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SignUpComponent,
     HomeComponent,
     UserProfileComponent,
-    SignInComponent
+    SignInComponent,
+    PlayerComponent,
+    GameSessionComponent,
+    FooterComponent,
+    NavbarComponent,
+    PlayerHomeComponent
   ],
   imports: [
     BrowserModule,

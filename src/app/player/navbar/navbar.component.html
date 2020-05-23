@@ -1,0 +1,69 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/playerhome" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li> -->
+          
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item active">
+                <a #homeNav class="nav-link" routerLink="/playerhome" style="color: rgb(255,51,51);">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  style="color: rgb(255,51,51);">    
+                </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/gamesession" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+              Play
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  style="color: rgb(255,51,51);">    
+              </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/userprofile" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+                Profile Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  style="color: rgb(255,51,51);">    
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="onLogout()" style="color: rgb(255,51,51);">
+                Logout  <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            
+        </ul>
+
+      </div>
+
+    </div>
+</nav>
