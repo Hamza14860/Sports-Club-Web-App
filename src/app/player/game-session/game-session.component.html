@@ -1,1 +1,23 @@
-<p>game-session works!</p>
+<!--HEADER-->
+
+<div class="view" style="background-image: url('./assets/images/back16.jpg'); background-repeat: no-repeat; background-size: cover;">
+   
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+  
+      <!-- Content -->
+      <div id="gameContent" class="text-center mx-5 fadeIn" [ngStyle]="{marginTop:'250px'}">
+
+        <h2 class="underlineHoverGame" routerLink="/attendance" routerLinkActive="active">Mark Attendance</h2>
+        <h2 class="underlineHoverGame" routerLink="/choosegames" routerLinkActive="active">Choose Games</h2>
+        <h2 class="underlineHoverGame" routerLink="/checkschedule" routerLinkActive="active">See Schedule</h2>
+
+        <router-outlet></router-outlet>
+      </div>
+      <!-- Content -->
+  
+    </div>
+    <!-- Mask & flexbox options-->
+  
+</div>
+<!-- Header -->

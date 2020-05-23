@@ -15,15 +15,20 @@ import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserService } from './service/user.service';
-
-//other
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
 import { PlayerComponent } from './player/player.component';
 import { GameSessionComponent } from './player/game-session/game-session.component';
 import { FooterComponent } from './player/footer/footer.component';
 import { NavbarComponent } from './player/navbar/navbar.component';
 import { PlayerHomeComponent } from './player/player-home/player-home.component';
+import { AttendanceComponent } from './player/game-session/attendance/attendance.component';
+import { ChooseGamesComponent } from './player/game-session/choose-games/choose-games.component';
+import { CheckScheduleComponent } from './player/game-session/check-schedule/check-schedule.component';
+
+//other
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 
 @NgModule({
@@ -38,14 +43,18 @@ import { PlayerHomeComponent } from './player/player-home/player-home.component'
     GameSessionComponent,
     FooterComponent,
     NavbarComponent,
-    PlayerHomeComponent
+    PlayerHomeComponent,
+    AttendanceComponent,
+    ChooseGamesComponent,
+    CheckScheduleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AdminModuleModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

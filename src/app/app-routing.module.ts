@@ -15,7 +15,9 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PlayerComponent } from './player/player.component';
 import { PlayerHomeComponent } from './player/player-home/player-home.component';
 import { GameSessionComponent } from './player/game-session/game-session.component';
-
+import { AttendanceComponent } from './player/game-session/attendance/attendance.component';
+import { ChooseGamesComponent } from './player/game-session/choose-games/choose-games.component';
+import { CheckScheduleComponent } from './player/game-session/check-schedule/check-schedule.component';
 
 
 import { AuthGuard } from './auth/auth.guard';
@@ -36,7 +38,6 @@ const routes: Routes = [
     path: 'login', component: UserComponent,
     children: [{ path: '', component: SignInComponent}]
   },
-  { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'player', component: PlayerComponent, canActivate: [AuthGuard] },
   { 
     path: 'playerhome', component: PlayerComponent,
@@ -44,7 +45,25 @@ const routes: Routes = [
   },
   { 
     path: 'gamesession', component: PlayerComponent,
-    children: [{ path: '', component: GameSessionComponent}]
+    children: [{ path: '', component: GameSessionComponent,}]
+  },
+    // { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
+
+  { 
+    path: 'userprofile', component: PlayerComponent,
+    children: [{ path: '', component: UserProfileComponent, canActivate: [AuthGuard] }]
+  },
+  { 
+    path: 'attendance', component: GameSessionComponent,
+    children: [{ path: '', component: AttendanceComponent}]
+  },
+  { 
+    path: 'choosegames', component: GameSessionComponent,
+    children: [{ path: '', component: ChooseGamesComponent}]
+  },
+  { 
+    path: 'checkschedule', component: GameSessionComponent,
+    children: [{ path: '', component: CheckScheduleComponent}]
   },
   // { path: 'gamesession', component: GameSessionComponent } ,
 
