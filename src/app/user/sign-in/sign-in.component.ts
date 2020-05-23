@@ -3,6 +3,8 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { UserService } from '../../service/user.service';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -20,13 +22,17 @@ export class SignInComponent implements OnInit {
   serverErrorMessages: string;
   
   ngOnInit() {
-    if(this.userService.isLoggedIn())
-    this.router.navigateByUrl('/playerhome');
+    if(this.userService.isLoggedIn()){
+      environment.navCheck=false;
+      this.router.navigateByUrl('/player');
+
+    }
   }
 
   onSubmit(form : NgForm){
     this.userService.login(form.value).subscribe(
       res => {
+        environment.navCheck=false;
         this.userService.setToken(res['token']);
         this.router.navigateByUrl('/player');
       },

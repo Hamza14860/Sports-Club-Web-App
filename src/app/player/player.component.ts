@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { Router } from "@angular/router";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-player',
@@ -32,6 +33,8 @@ export class PlayerComponent implements OnInit {
   onLogout(){
     this.userService.deleteToken();
     this.router.navigate(['/login']);
+    environment.navCheck = false;
+
   }
 
 }

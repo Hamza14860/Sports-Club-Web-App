@@ -1,6 +1,8 @@
-import { Component, OnInit,AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit,AfterViewInit,OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { Router } from "@angular/router";
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,20 +10,26 @@ import { Router } from "@angular/router";
   styleUrls: ['./navbar.component.css']
 })
 
-export class NavbarComponent implements OnInit,AfterViewInit  {
+export class NavbarComponent implements OnInit,AfterViewInit,OnDestroy  {
   @ViewChild('homeNav') myDiv: ElementRef<HTMLElement>;
 
   // @ViewChild('homeNav') divClick: ElementRef;
   constructor(private userService: UserService, private router: Router) { }
 
   ngAfterViewInit(){
-    this.triggerFalseClick();
+    if (environment.navCheck == false){
+      this.triggerFalseClick();
+    }
   }
   ngOnInit(): void {
     // setTimeout(() => {
     //   this.divClick.nativeElement.click();
     //   }, 200);
 
+  }
+  ngOnDestroy(){
+    console.log(environment.navCheck);
+    environment.navCheck = true;
   }
 
 triggerFalseClick() {
@@ -32,5 +40,8 @@ triggerFalseClick() {
   onLogout(){
     this.userService.deleteToken();
     this.router.navigate(['/login']);
+    environment.navCheck = false;
+
   }
+ 
 }
