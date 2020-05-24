@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //component imports
@@ -27,10 +27,10 @@ import { CheckScheduleComponent } from './player/game-session/check-schedule/che
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
+import {MatSelectModule} from '@angular/material/select'; 
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +54,11 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FormsModule,
     AdminModuleModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule.forRoot()
+    BrowserAnimationsModule,
+
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

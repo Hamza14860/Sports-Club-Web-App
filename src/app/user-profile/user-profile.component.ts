@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { Router } from "@angular/router";
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl, FormGroup } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { Time } from '@angular/common';
 
-import { IDropdownSettings } from 'ng-multiselect-dropdown';  
 
+interface Rank {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-user-profile',
@@ -13,80 +18,58 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class UserProfileComponent implements OnInit {
   userDetails;
+  sportsForm:FormGroup;
 
-  dropdownList = [   { item_id: 1, item_text: 'Mumbai' },
-  { item_id: 2, item_text: 'Bangaluru' },
-  { item_id: 3, item_text: 'Pune' },
-  { item_id: 4, item_text: 'Navsari' },
-  { item_id: 5, item_text: 'New Delhi' }];
-  selectedItems = [ { item_id: 2, item_text: 'Bangaluru' }];
-  dropdownSettings:IDropdownSettings = {singleSelection: false,
-    idField: 'item_id',
-    textField: 'item_text',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 3,
-    allowSearchFilter: true};
+  gameList: string[] = ['Tennis', 'Badminton', 'Table Tennis', 'Squash'];
+
+  ranks: Rank[] = [
+    {value: 'beginner', viewValue: 'Beginner'},
+    {value: 'medium', viewValue: 'Medium'},
+    {value: 'advance', viewValue: 'Advance'}
+  ];
+
+  public time: string = null;
+
+  gameControl = new FormControl();
+  rankControl = new FormControl(this.ranks[0].value);
+  timeControl = new FormControl();
+
+
 
   constructor(private userService: UserService, private router: Router) {
+      this.sportsForm = new FormGroup({
+        rank: this.rankControl,
+        time: this.timeControl
+      });
    }
 
   ngOnInit() {
     
-    //
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
-    //
-    
+
     this.userService.getUserProfile().subscribe(
       res => {
-        this.userDetails = res['user'];
-
-        
+        this.userDetails = res['user'];  
       },
       err => { 
-        console.log(err);
-        
+        console.log(err);   
       }
     );
 
   }
 
-  //
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-  //
 
   onLogout(){
     this.userService.deleteToken();
     this.router.navigate(['/login']);
   }
 
+  // onSubmit(form: NgForm) {
+  onSubmit() {
+    console.log(this.rankControl.value);
+    console.log(this.gameControl.value);
+    console.log(this.timeControl.value );
+    // console.log(this.time);
 
-  onSubmit(form: NgForm) {
-    
   }
 
 }

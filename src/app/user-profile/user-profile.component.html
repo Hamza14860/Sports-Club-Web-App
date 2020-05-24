@@ -34,13 +34,42 @@
         <table *ngIf="userDetails" class="table-fill" style="margin-top: 20px;">
             <thead>
                 <tr>
-                    <th colspan="2" class="text-center">Sports Information</th>
+                    <th colspan="2" class="text-center">Sports Club Preferences</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>
-                        
+                        <!-- <form #sportsForm="ngForm" [formGroup]="sportsForm" (ngSubmit)="onSubmit(sportsForm)" > -->
+                        <form [formGroup]="sportsForm" (ngSubmit)="onSubmit()" style="text-align: center;">
+                            <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
+                                <mat-label>Games Interested In:</mat-label>
+                                <mat-select [formControl]="gameControl" multiple>
+                                <mat-option *ngFor="let game of gameList" [value]="game">{{game}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            
+                            <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
+                                <mat-label for="timeInput">Daily Train Timings (12:00PM-09:00PM):</mat-label>
+                                <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [(ngModel)]='time' [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00"/>    
+                            </mat-form-field>
+                               
+                            <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
+                                <mat-label>Opponent Ranking Level</mat-label>
+                                <mat-select [formControl]="rankControl" name="rank">
+                                  <mat-option disabled>None</mat-option>
+                                  <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                                    {{rank.viewValue}}
+                                  </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <div class="row">
+                                <p hidden>Selected: {{rankControl.value}}</p>
+
+                                <input type="submit" value="Update">
+                            </div>
+                        </form>
                     </td>
                
             </tr>
@@ -49,7 +78,7 @@
         </table>
     </div>
  
-    <div class="row text-center" *ngIf="dropdownList.length" >
+    <!-- <div class="row text-center" *ngIf="dropdownList.length" >
         <form #sportsForm="ngForm" (ngSubmit)="sportsForm.valid && onSubmit(sportsForm)">
             <ng-multiselect-dropdown 
             [placeholder]="'custom placeholder'"
@@ -63,6 +92,9 @@
 
             <input type="submit" value="Update">
         </form>
+    </div> -->
+    <div class="row text-center">
+            
     </div>
     
     
