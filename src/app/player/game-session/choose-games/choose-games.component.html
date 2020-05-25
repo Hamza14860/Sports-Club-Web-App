@@ -1,1 +1,30 @@
-<p>choose-games works!</p>
+<div class="card" style="margin-left: 10px;margin-right: 10px;margin-bottom: 10px;">
+    <div class="card-header">
+        Choose Game
+    </div>
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" style="text-align: center;" style="width: 100%;">
+        <p></p>
+       
+        <mat-form-field style="width: 70%;">
+            <mat-label>Game</mat-label>
+            <mat-select [formControl]="gameControl" name="game">
+              <mat-option disabled>Choose</mat-option>
+              <mat-option *ngFor="let game of games" [value]="game">
+                {{game}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="width: 70%;">
+            <mat-label for="timeInput">Time (12:00PM-09:00PM):</mat-label>
+            <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [(ngModel)]='time' [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00"/>    
+        </mat-form-field>      
+
+        <div class="row" >
+            <input style="margin: auto;display: block;" type="submit" value="Submit">
+        </div>
+    </form>
+    <p></p>
+    <br>
+    
+</div>

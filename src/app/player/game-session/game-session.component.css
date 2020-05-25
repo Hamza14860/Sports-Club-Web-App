@@ -37,3 +37,8 @@
   .underlineHoverGame:hover:after{
     width: 100%;
   }
+
+  h2.active {
+    color: #da2f2f;
+    border-bottom: 2px solid #5fbae9;
+  }
