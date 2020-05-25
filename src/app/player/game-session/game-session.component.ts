@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameSessionComponent implements OnInit {
 
-  constructor() { }
+  constructor() {    console.log("GameSession");
+}
 
   ngOnInit(): void {
+    console.log("GameSession");
   }
 
 }

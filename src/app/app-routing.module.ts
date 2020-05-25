@@ -21,6 +21,9 @@ import { CheckScheduleComponent } from './player/game-session/check-schedule/che
 
 
 import { AuthGuard } from './auth/auth.guard';
+import { NavbarComponent } from './player/navbar/navbar.component';
+import { FooterComponent } from './player/footer/footer.component';
+import { User } from './model/user.model';
 
 
 
@@ -38,34 +41,54 @@ const routes: Routes = [
     path: 'login', component: UserComponent,
     children: [{ path: '', component: SignInComponent}]
   },
-  { path: 'player', component: PlayerComponent, canActivate: [AuthGuard] },
-  { 
-    path: 'playerhome', component: PlayerComponent,
-    children: [{ path: '', component: PlayerHomeComponent}]
-  },
-  { 
-    path: 'gamesession', component: PlayerComponent,
-    children: [{ path: '', component: GameSessionComponent,}]
-  },
-    // { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
 
-  { 
-    path: 'userprofile', component: PlayerComponent,
-    children: [{ path: '', component: UserProfileComponent, canActivate: [AuthGuard] }]
-  },
-  { 
-    path: 'attendance', component: GameSessionComponent,
-    children: [{ path: '', component: AttendanceComponent}]
-  },
-  { 
-    path: 'choosegames', component: GameSessionComponent,
-    children: [{ path: '', component: ChooseGamesComponent}]
-  },
-  { 
-    path: 'checkschedule', component: GameSessionComponent,
-    children: [{ path: '', component: CheckScheduleComponent}]
-  },
-  // { path: 'gamesession', component: GameSessionComponent } ,
+
+  { path: 'player', 
+  component: PlayerComponent, 
+  canActivate: [AuthGuard],
+  children: [
+    {path: 'playerhome', component:PlayerHomeComponent},
+    {path: 'navbar', component:NavbarComponent},
+    {path: 'footer', component:FooterComponent},
+
+    {path: 'gamesession', 
+    component:GameSessionComponent,
+    children:[
+    {path: 'attendance', component:AttendanceComponent},
+    {path: 'choosegame', component:ChooseGamesComponent},
+    {path: 'checkschedule', component:CheckScheduleComponent}
+    ]},
+
+    {path: 'userprofile', component:UserProfileComponent, canActivate: [AuthGuard]},
+
+  ]
+   },
+
+
+  // { 
+  //   path: 'playerhome', component: PlayerComponent,
+  //   children: [{ path: '', component: PlayerHomeComponent}]
+  // },
+  // { 
+  //   path: 'gamesession', component: PlayerComponent,
+  //   children: [{ path: '', component: GameSessionComponent,}]
+  // },
+  // { 
+  //   path: 'userprofile', component: PlayerComponent,
+  //   children: [{ path: '', component: UserProfileComponent, canActivate: [AuthGuard] }]
+  // },
+  // { 
+  //   path: 'attendance', component: GameSessionComponent,
+  //   children: [{ path: '', component: AttendanceComponent}]
+  // },
+  // { 
+  //   path: 'choosegames', component: GameSessionComponent,
+  //   children: [{ path: '', component: ChooseGamesComponent}]
+  // },
+  // { 
+  //   path: 'checkschedule', component: GameSessionComponent,
+  //   children: [{ path: '', component: CheckScheduleComponent}]
+  // },
 
 
 
