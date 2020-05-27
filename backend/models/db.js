@@ -6,3 +6,10 @@ mongoose.connect(process.env.MONGODB_URI, (err) => {
 });
 
 require('./user.model');
+require('./coach.model');
+require('./court.model');
+require('./gamesession.model');
+require('./game.model');
+require('./attendance.model');
+require('./rankings.model');
+require('./schedule.model');

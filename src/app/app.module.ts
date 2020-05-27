@@ -15,7 +15,6 @@ import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserService } from './service/user.service';
-
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -28,7 +27,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SignUpComponent,
     HomeComponent,
     UserProfileComponent,
-    SignInComponent
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
