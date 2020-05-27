@@ -22,6 +22,29 @@ module.exports.register = (req, res, next) => {
     });
 }
 
+module.exports.update = (req, res, next) => {
+    var coach = {
+     name: req.body.name,
+     email: req.body.email,
+     password: req.body.password
+    };
+    Coach.findOne({ email: req.body.email },
+     (err, coachv) => {
+         if (coachv._id != req.body._id){
+             return res.status(404).json({ status: false, message: 'Email Already Exists' });
+         }
+         else{
+             Coach.findByIdAndUpdate(req.body._id,{$set: coach},{new:true},(err,doc)=>{
+                 if(!err){ res.send(doc); }
+                 else{
+                     return res.status(404).json({ status: false, message: 'Error updating User' });
+                 }
+             });
+           }           
+         }
+     );  
+ }
+ 
 
 module.exports.authenticate = (req, res, next) => {
     // call for passport authentication
@@ -55,4 +78,12 @@ module.exports.playerHome = (req, res, next) =>{
                 return res.status(200).json({ status: true, user : _.pick(user,['name','email']) });
         }
     );
+
+}
+
+module.exports.getPlayers = (req,res,next)=>{
+    User.find(function(err,users){
+        res.json(users);
+    });
+    
 }

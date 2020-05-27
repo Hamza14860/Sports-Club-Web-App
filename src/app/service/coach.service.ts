@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {User} from '../model/user.model';
+import {Coach} from '../model/coach.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  selectedUser: User = {
+export class CoachService {
+  selectedUser: Coach = {
     name: '',
     email: '',
     password: ''
@@ -20,26 +20,29 @@ export class UserService {
 
   //Http Methods
     
-  postUser(user: User){
-    return this.http.post(environment.apiBaseUrl+'/register',user,this.noAuthHeader);
+  postCoach(user: Coach){
+    return this.http.post(environment.apiBaseUrl+'/registerc',user,this.noAuthHeader);
   }
 
-  login(authCredentials) {
-    return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
+  loginC(authCredentials) {
+    return this.http.post(environment.apiBaseUrl + '/authenticatec', authCredentials,this.noAuthHeader);
   }
 
-  getUserProfile() {
-    return this.http.get(environment.apiBaseUrl + '/userProfile');
-  }
-  getPlayerHome() {
-    return this.http.get(environment.apiBaseUrl + '/playerHome');
+  getCoachProfile() {
+    return this.http.get(environment.apiBaseUrl + '/coachProfile');
   }
 
-  getUsers(){
-    return this.http.get<User[]>(environment.apiBaseUrl + '/players');
+  getCoaches(){
+    return this.http.get<Coach[]>(environment.apiBaseUrl + '/coaches');
   }
 
   //Helper Methods
+
+  deleteProfile(id:string) {
+    
+    return this.http.get(environment.apiBaseUrl+ '/delete-coach/'+id);
+  }
+
 
   setToken(token: string) {
     localStorage.setItem('token', token);
@@ -54,15 +57,15 @@ export class UserService {
   }
 
   setToken1(token: string) {
-    localStorage.setItem('token1', token);
+    localStorage.setItem('token2', token);
   }
 
   getToken1() {
-    return localStorage.getItem('token1');
+    return localStorage.getItem('token2');
   }
 
   deleteToken1() {
-    localStorage.removeItem('token1');
+    localStorage.removeItem('token2');
   }
 
   getUserPayload() {

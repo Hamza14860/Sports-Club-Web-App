@@ -1,0 +1,109 @@
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: black;">
+    <div class="container">
+  
+      <!-- Brand -->
+      <a class="navbar-brand" routerLink="/admin-home">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-brand" style="margin-left: 40px;">
+        <img src="./assets/images/crud.jpg" style="height: 90px; width: 520px" class="navbar-brand" alt="FAST SPORTS">			
+        <!--  <strong style="color: rgb(255,51,51);">OPERATIONS</strong> -->
+      </div>
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+  
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/home" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+           -->
+        </ul>
+  
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+         
+        </ul>
+  
+      </div>
+  
+    </div>
+  </nav>
+  <div style="height: 150px;">
+
+  </div>
+<div style="margin-top: 10px;margin-left: 40%;">
+    <button (click)="shPlayer()" class="btn btn-primary">Players</button>
+    <button (click)="shCoach()" class="btn btn-danger">Coaches</button>
+    <button (click)="shCreate()" class="btn btn-warning">Create</button>
+</div>
+<div *ngIf="value== 'player'">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h2>Players List</h2>
+        </div>
+        <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.name.split(' ')[0]}}</td>
+                <td>{{user.name.split(' ')[1]}}</td>
+                <td>{{user.email}}</td>
+                <td><button (click)="userDelete(user._id)" class="btn btn-danger">Delete</button>
+                    <button (click)="userUpdate(user._id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="value=='coach'">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h2>Coaches List</h2>
+        </div>
+        <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let coach of coaches">
+                <td>{{coach.name.split(' ')[0]}}</td>
+                <td>{{coach.name.split(' ')[1]}}</td>
+                <td>{{coach.email}}</td>
+                <td><button (click)="coachDelete(coach._id)" class="btn btn-danger">Delete</button>
+                    <button (click)="coachUpdate(coach._id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>

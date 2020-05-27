@@ -16,12 +16,24 @@ import { ApiService } from '../service/api.service'; //service file to handle cr
 import { AppRoutingModule } from '../app-routing.module';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { AddDataComponent } from './add-data/add-data.component';
+import { CrudCompComponent } from './crud-comp/crud-comp.component';
+import { AddPlayerComponent } from './add-player/add-player.component';
+import { UpdatePlayerComponent } from './update-player/update-player.component';
+import { UpdateCoachComponent } from './update-coach/update-coach.component';
+import { AdminAuthComponent } from './admin-auth/admin-auth.component';
 
 
 
 @NgModule({
   declarations: [
     AdminHomeComponent,
+    AddDataComponent,
+    CrudCompComponent,
+    AddPlayerComponent,
+    UpdatePlayerComponent,
+    UpdateCoachComponent,
+    AdminAuthComponent,
   // PlayerCreateComponent,
   // PlayerEditComponent,
   // PlayerListComponent
@@ -44,3 +56,6 @@ import { BrowserModule } from '@angular/platform-browser';
   providers: [ApiService]
 })
 export class AdminModuleModule { }
+
+
+

@@ -5,6 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminHomeComponent} from './admin-module/admin-home/admin-home.component';
 
+import { AdminAuthComponent} from './admin-module/admin-auth/admin-auth.component';
+
+import { AddDataComponent} from './admin-module/add-data/add-data.component';
+import { AddPlayerComponent} from './admin-module/add-player/add-player.component';
+import { CrudCompComponent} from './admin-module/crud-comp/crud-comp.component';
 import {SignUpComponent} from './user/sign-up/sign-up.component';
 import {UserComponent} from './user/user.component';
 
@@ -28,10 +33,19 @@ import { User } from './model/user.model';
 
 
 
+
 const routes: Routes = [
   { path: 'admin-home', component: AdminHomeComponent } ,
   { path: 'home', component: HomeComponent } ,
 
+
+  { path: 'add-coach', component: AddDataComponent } ,
+
+  { path: 'add-player', component: AddPlayerComponent } ,
+
+  { path: 'admin-view', component: CrudCompComponent } ,
+
+  { path: 'admin-auth', component: AdminAuthComponent } ,
 
   { 
     path: 'signup', component: UserComponent,
@@ -41,6 +55,11 @@ const routes: Routes = [
     path: 'login', component: UserComponent,
     children: [{ path: '', component: SignInComponent}]
   },
+<<<<<<< HEAD
+=======
+  
+  { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
+>>>>>>> subbranch
 
 
   { path: 'player', 

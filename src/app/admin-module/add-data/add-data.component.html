@@ -1,0 +1,93 @@
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: black;">
+    <div class="container">
+  
+      <!-- Brand -->
+      <a class="navbar-brand" routerLink="/admin-home">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+  
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/home" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+           -->
+        </ul>
+  
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a routerLink="/admin-home" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/admin-view" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+              View Users
+            </a>
+          </li>
+        </ul>
+  
+      </div>
+  
+    </div>
+  </nav>
+
+<div class="wrapper" [ngStyle]="{backgroundImage:'url(./assets/images/back14.jpg)', 
+backgroundPosition: 'center',
+backgroundRepeat: 'no-repeat',
+backgroundSize: 'cover'}">
+
+<div id="formContent">
+    <h2 class="underlineHover" routerLink="/add-coach" routerLinkActive="active">Add Coach</h2>
+    <h2 class="underlineHover" routerLink="/add-player" routerLinkActive="active">Add Player</h2>
+    <router-outlet></router-outlet>
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+
+    <input type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Full Name"
+    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
+    <div *ngIf="signUpForm.submitted && !name.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+
+    <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
+    required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+    <div *ngIf="signUpForm.submitted && email.errors">
+      <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+      <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+    </div>
+    
+    <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+    minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+    <div *ngIf="signUpForm.submitted && password.errors">
+      <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+      <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+    </div>
+
+    <input type="submit" value="Add Coach">
+</form>
+
+</div>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
