@@ -55,11 +55,8 @@ const routes: Routes = [
     path: 'login', component: UserComponent,
     children: [{ path: '', component: SignInComponent}]
   },
-<<<<<<< HEAD
-=======
   
   { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
->>>>>>> subbranch
 
 
   { path: 'player', 
