@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //component imports
 import { AdminModuleModule} from './admin-module/admin-module.module';
+import { CoachModuleModule} from './coach-module/coach-module.module';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
@@ -54,6 +55,7 @@ import { MatInputModule } from '@angular/material/input';
     AppRoutingModule,
     FormsModule,
     AdminModuleModule,
+    CoachModuleModule,
     HttpClientModule,
     BrowserAnimationsModule,
 
