@@ -21,7 +21,7 @@ export class CoachAuthComponent implements OnInit {
   serverErrorMessages: string;
   
   ngOnInit() {
-    if(this.userService.isLoggedIn()){
+    if(localStorage.getItem('coachuser')!=''){
       environment.navCheck=false;
       this.router.navigateByUrl('/coach-home');
 
@@ -33,6 +33,7 @@ export class CoachAuthComponent implements OnInit {
       res => {
         environment.navCheck=false;
         this.userService.setToken(res['token']);
+        localStorage.setItem('coachuser',this.model.email);
         this.router.navigateByUrl('/coach-home');
       },
       err => {

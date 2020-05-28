@@ -28,8 +28,8 @@ export class CoachService {
     return this.http.post(environment.apiBaseUrl + '/authenticatec', authCredentials,this.noAuthHeader);
   }
 
-  getCoachProfile() {
-    return this.http.get(environment.apiBaseUrl + '/coachProfile');
+  getCoachProfile(email:String) {
+    return this.http.get<Coach>(environment.apiBaseUrl + '/coach-user/'+email);
   }
 
   getCoaches(){

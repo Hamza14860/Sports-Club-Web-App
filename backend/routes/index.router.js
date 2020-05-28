@@ -70,6 +70,18 @@ router.get('/schedules',ctrlSchedule.getSchedules);
 
 
 
+router.get('/coach-user/:email', function(req, res) { 
+    console.log("Got it"+req.params.email);
+    Coach.findOne({ email: req.params.email},
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(coach);
+        }
+    );
+});
+
 
 router.get('/delete-user/:id', function(req, res) { 
     

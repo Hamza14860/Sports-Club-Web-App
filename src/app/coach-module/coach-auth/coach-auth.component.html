@@ -45,7 +45,7 @@ backgroundRepeat: 'no-repeat',
 backgroundSize: 'cover'}">
 <div id="formContent">
 <div>
-    <img src="assets/images/signin2.png" id="icon" alt="User Icon" />
+    <img src="assets/images/coach1.png" id="icon" alt="User Icon" style="height: 100px;width: 100px;"/>
 </div>
 <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
     <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="user name" required
