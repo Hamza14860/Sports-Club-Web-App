@@ -1,1 +1,179 @@
-<p>coach-home works!</p>
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: black;">
+    <div class="container">
+  
+      <!-- Brand -->
+      <a class="navbar-brand" routerLink="/admin-home">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+  
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/home" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+           -->
+        </ul>
+  
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a routerLink="/add-coach" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+              View Schedule
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/admin-view" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+              Add Ranks
+            </a>
+          </li>
+        </ul>
+  
+      </div>
+  
+    </div>
+  </nav>
+  <!-- Navbar -->
+  
+  
+  <!--HEADER-->
+  
+  <div class="view" style="background-image: url('./assets/images/back999999.jpg'); background-repeat: no-repeat; background-size: cover;">
+   
+  <!-- Mask & flexbox options-->
+  <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+  
+    <!-- Content -->
+    <div class="text-center mx-5 fadeIn" [ngStyle]="{marginTop:'150px' }">
+        <!-- <div class="mb-4 text-center" >
+            <img src="assets/images/logo1.png" style="width: 200px;height: 200px;" />
+        </div> -->
+        <blockquote class="blockquote text-center">
+            <h1 class="display-4 redText" >
+                <strong>FAST SPORTS</strong>
+            </h1>
+            <footer class="blockquote-footer redText"><cite title="Source Title" >Train . Compete . Win</cite></footer>
+        </blockquote>
+        
+  
+        <p class="md-4 d-none d-md-block redText">
+            <strong>A Sports Club with top class sporting facilities. </strong>
+        </p>
+  
+      <a routerLink="/admin-view" class="btn btn-danger btn-lg">View Users
+      </a>
+    </div>
+    <!-- Content -->
+  
+  </div>
+  <!-- Mask & flexbox options-->
+  
+  </div>
+  <!-- Header -->
+  
+  
+  <br><br><br>
+  <!--BODY-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 text-center zoom">
+          <img src="./assets/images/sports1.png" class="rounded" style="align-self: center;height: 250px; width: 250px" alt="Many Courses">
+          <h4 class="feature text-center">Five Sports to Play</h4>
+      </div>
+      <div class="col-lg-4 text-center zoom">
+          <img src="./assets/images/coach.png" class="rounded" style="align-self: center;height: 250px; width: 200px" alt="Renowned Authors">
+          <h4 class="feature text-center">Learn From The best Coach's</h4>
+      </div>
+      <div class="col-lg-4 text-center zoom">
+          <img src="./assets/images/ground.png" class="rounded" style="align-self: center;height: 250px; width: 200px" alt="Learning Centres">
+          <h4 class="feature text-center">10+ Playing Grounds</h4>
+      </div>
+  </div>
+  </div>
+  
+  
+  
+  <br><br><br><br><br>
+  
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+  
+        <div class="col-md-6 order-lg-2" >
+            <img src="./assets/images/digi.jpeg"  class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-md-6 order-lg-1  p-5">
+            <h1 class="redText">Digitized Training</h1>
+            <p class="lead mb-0">Using our innovate software, reserve matches and train online.</p>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <!-- <div class="col-md-6" style="background-image: url('Images/back8.jpg');  background-size: cover;"> -->
+            <div class="col-md-6">
+                <img src="./assets/images/back9999.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-md-6 order-lg-1  p-5" >
+            <h1 class="redText">Get Selected & Compete</h1>
+            <p class="lead mb-0">Perform well and get selected for the club team. Compete in national sport tournaments and win prizes.</p>
+        </div>
+    </div>
+    <div class="row no-gutters ">
+            <div class="col-md-6 order-lg-2 " >
+            <img src="./assets/images/back6.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-md-6 order-lg-1 p-5">
+            <h1 class="redText">Affordable Membership</h1>
+        <p class="lead mb-0"> Choose the best membership package for yourself.</p>
+        </div>
+    </div>
+  </div>
+  <!--BODY-->
+  
+  <br><br>
+  <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <hr class="my-4">
+  
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-4">
+            <h6 class="redText">Contact Us</h6>
+          <p class="text-muted"><small>fast.sports@gmail.com</small></p>
+          <p class="text-muted"><small>00923452345321</small></p>
+          </div>
+          <div class="col-md-4">
+              <a class="btn btn-outline-danger redText"  role="button">About Us
+              </a>
+          </div>
+          <div class="col-md-4">
+            <h6 class="redText">Location</h6>
+            <p class="text-muted"><small>i-9/3, Islamabad</small></p>
+          </div>
+    </div>
+    
+  
+    <hr class="my-4">
+  
+  
+    <!--Copyright-->
+    <div class="footer-copyright py-3 redText">
+      <small>© 2020 Copyright: </small>
+      <a href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank"><small> Hamza Azam, Anees ul Anwar, Bilal</small></a>
+    </div>
+    <!--/.Copyright-->
+  
+  </footer>
+  <!--/.Footer-->
+  
+  
+  

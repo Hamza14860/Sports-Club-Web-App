@@ -29,6 +29,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { NavbarComponent } from './player/navbar/navbar.component';
 import { FooterComponent } from './player/footer/footer.component';
 import { User } from './model/user.model';
+import {CoachAuthComponent} from './coach-module/coach-auth/coach-auth.component';
+import {CoachHomeComponent} from './coach-module/coach-home/coach-home.component';
 
 
 
@@ -46,6 +48,9 @@ const routes: Routes = [
   { path: 'admin-view', component: CrudCompComponent } ,
 
   { path: 'admin-auth', component: AdminAuthComponent } ,
+
+  { path: 'coach-auth', component: CoachAuthComponent } ,
+  { path: 'coach-home', component: CoachHomeComponent } ,
 
   { 
     path: 'signup', component: UserComponent,

@@ -1,1 +1,69 @@
-<p>coach-auth works!</p>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: black;">
+    <div class="container">
+  
+      <!-- Brand -->
+      <a class="navbar-brand" routerLink="/admin-home">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+  
+        <div class="navbar-brand" style="margin-left: 30%;">
+            <p>Coach</p>			
+            <!--  <strong style="color: rgb(255,51,51);">OPERATIONS</strong> -->
+          </div>
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/home" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+           -->
+        </ul>
+  
+        <!-- Right -->
+  
+      </div>
+  
+    </div>
+  </nav>
+
+
+
+<div class="wrapper" [ngStyle]="{backgroundImage:'url(./assets/images/back14.jpg)', 
+backgroundPosition: 'center',
+backgroundRepeat: 'no-repeat',
+backgroundSize: 'cover'}">
+<div id="formContent">
+<div>
+    <img src="assets/images/signin2.png" id="icon" alt="User Icon" />
+</div>
+<form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+    <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="user name" required
+      [ngClass]="{'invalid-textbox' :signInForm.submitted && !email.valid }">
+    <div *ngIf="signInForm.submitted && email.errors?.pattern">
+      <label class="validation-message">Invalid email.</label>
+    </div>
+
+    <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password" required minlength="4"
+      [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+    <div *ngIf="signInForm.submitted && password.errors?.minlength">
+      <label class="validation-message">Minimum 4 characters.</label>
+    </div>
+
+    <input type="submit" value="Sign In">
+</form>
+</div>
+  <!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+</div>
