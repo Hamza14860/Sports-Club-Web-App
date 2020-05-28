@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../model/user.model';
 import { environment } from '../../environments/environment';
 
+import {Attendance} from '../model/attendance.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -86,5 +88,11 @@ export class UserService {
       return userPayload.exp > Date.now() / 1000;
     else
       return false;
+  }
+
+
+  //Attendance Methods
+  postAttendance(attendance: Attendance){
+    return this.http.post(environment.apiBaseUrl+'/add-attendance',attendance,this.noAuthHeader);
   }
 }

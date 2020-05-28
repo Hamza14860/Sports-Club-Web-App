@@ -7,7 +7,8 @@ const Attendance = mongoose.model('Attendance');
 module.exports.addAttendance = (req, res, next) => {
     var attendance = new Attendance();
     attendance.playerEmail = req.body.playerEmail;
-    attendance.date = req.body.playerEmail;
+    attendance.date = req.body.date;
+	attendance.time = req.body.time;
     attendance.message = req.body.message;
     attendance.save((err, doc) => {
         if (!err)
