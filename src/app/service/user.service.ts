@@ -35,6 +35,11 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl + '/playerHome');
   }
 
+  deleteProfile(id:string) {
+    
+    return this.http.get('http://localhost:3000/api/delete-user/'+id);
+  }
+
   getUsers(){
     return this.http.get<User[]>(environment.apiBaseUrl + '/players');
   }
