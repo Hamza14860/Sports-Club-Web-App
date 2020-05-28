@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit {
 
     this.userService.getUserProfile().subscribe(
       res => {
-        this.userDetails = res['user'];  
+        this.userDetails = res['user']; 
       },
       err => { 
         console.log(err);   

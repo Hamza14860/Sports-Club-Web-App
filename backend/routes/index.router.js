@@ -6,6 +6,7 @@ const User = mongoose.model('User');
 const Coach = mongoose.model('Coach');
 const Schedule = mongoose.model('Schedule');
 const Court = mongoose.model('Court');
+const Attendance = mongoose.model('Attendance');
 
 const ctrlUser = require('../controllers/user.controller');
 const ctrlCoach = require('../controllers/coach.controller');
@@ -81,6 +82,20 @@ router.get('/coach-user/:email', function(req, res) {
         }
     );
 });
+
+
+router.get('/attend-of/:date/:playerEmail', function(req, res) { 
+    console.log("Got it"+req.params.date);
+    Attendance.find({ date: req.params.date,playerEmail:req.params.playerEmail},
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(coach);
+        }
+    );
+});
+
 
 
 router.get('/delete-user/:id', function(req, res) { 

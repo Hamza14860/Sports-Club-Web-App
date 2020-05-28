@@ -46,6 +46,10 @@ export class UserService {
     return this.http.get<User[]>(environment.apiBaseUrl + '/players');
   }
 
+  getattends(date:String,email:String){
+    return this.http.get<Attendance[]>(environment.apiBaseUrl + '/attend-of/'+date+'/'+email);
+  }
+
   //Helper Methods
 
   setToken(token: string) {

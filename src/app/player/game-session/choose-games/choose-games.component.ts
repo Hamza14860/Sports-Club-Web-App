@@ -15,13 +15,13 @@ export class ChooseGamesComponent implements OnInit {
   public time: string = null;
 
   userDetails;
-
+  attendances:Attendance[];
   today;
   currdate;
   currtime;
-
+  marked:Boolean = false;
   attendance;
-
+ len;
   buttonText= "Mark Attendance"
 
 
@@ -40,6 +40,7 @@ export class ChooseGamesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];  
@@ -48,6 +49,7 @@ export class ChooseGamesComponent implements OnInit {
         console.log(err);   
       }
     );
+
   }
 
   onSubmit() {
@@ -70,16 +72,31 @@ export class ChooseGamesComponent implements OnInit {
     // console.log(this.attendance.message);
 
 
-    this.userService.postAttendance(this.attendance).subscribe(
-      res => {
-        console.log("Attendance Marked");
-        this.buttonText = "Attendance Marked";
-      },
-      err => {
-        console.log("ERROR");
-      }
-    );
+    this.userService.getattends(this.currdate,this.attendance.playerEmail).subscribe((data: Attendance[]) => this.attendances = data);
+  
+    if(this.attendances.length>0)
+    {
+        this.marked = true;
+    }
 
+    if(this.marked)
+    {
+      this.buttonText = "Attendance Marked";
+    }
+
+
+
+    if(!this.marked && this.buttonText != "Attendance Marked"){
+      this.userService.postAttendance(this.attendance).subscribe(
+        res => {
+          console.log("Attendance Marked");
+          this.buttonText = "Attendance Marked";
+        },
+        err => {
+          console.log("ERROR");
+        }
+      );
+    }
 
   }
 
