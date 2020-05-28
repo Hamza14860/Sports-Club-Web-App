@@ -35,7 +35,6 @@ export class SignInComponent implements OnInit {
         environment.navCheck=false;
         this.userService.setToken(res['token']);
         this.router.navigateByUrl('/player');
-        localStorage.setItem('attend','no');
       },
       err => {
         this.serverErrorMessages = err.error.message;
