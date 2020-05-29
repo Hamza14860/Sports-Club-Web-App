@@ -32,7 +32,7 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
   }
   updateUser(user: User){
-    return this.http.post(environment.apiBaseUrl+'/updateUser',user,this.noAuthHeader);
+    return this.http.put(environment.apiBaseUrl+'/updateUser',user,this.noAuthHeader);
   }
 
   getUserProfile() {
