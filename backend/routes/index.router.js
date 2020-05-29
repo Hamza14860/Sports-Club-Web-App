@@ -96,6 +96,17 @@ router.get('/attend-of/:date/:playerEmail', function(req, res) {
     );
 });
 
+router.get('/attend-of/:date', function(req, res) { 
+    console.log("Got it"+req.params.date);
+    Attendance.find({ date: req.params.date},
+        (err, attend) => {
+            if (!attend)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(attend);
+        }
+    );
+});
 
 
 router.get('/delete-user/:id', function(req, res) { 

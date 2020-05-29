@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminHomeComponent} from './admin-module/admin-home/admin-home.component';
 
 import { AdminAuthComponent} from './admin-module/admin-auth/admin-auth.component';
+import { NotificationComponent} from './admin-module/notification/notification.component';
 
 import { AddDataComponent} from './admin-module/add-data/add-data.component';
 import { AddPlayerComponent} from './admin-module/add-player/add-player.component';
@@ -48,6 +49,8 @@ const routes: Routes = [
   { path: 'admin-view', component: CrudCompComponent } ,
 
   { path: 'admin-auth', component: AdminAuthComponent } ,
+
+  { path: 'notifications', component: NotificationComponent } , 
 
   { path: 'coach-auth', component: CoachAuthComponent } ,
   { path: 'coach-home', component: CoachHomeComponent } ,
