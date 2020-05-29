@@ -48,28 +48,25 @@ module.exports.update = (req, res, next) => {
  }
  
  module.exports.updateUser = (req, res, next) => {
+	 console.log("UPDATE"+req.body.email);
     var userr = {
      name: req.body.name,
      email: req.body.email,
 	 opponentRank: req.body.opponentRank,
-	 dailyTimings: req.body.dailyTimings,
-     password: req.body.password
+	 dailyTimings: req.body.dailyTimings
     };
     User.findOne({ email: req.body.email },
      (err, userrv) => {
-           if (userrv._id != req.body._id){
-             return res.status(404).json({ status: false, message: 'Email Already Exists' });
-         }
-         else{
-             User.findByIdAndUpdate(req.body._id,{$set: userr},{new:true},(err,doc)=>{
-                 if(!err){ 
-					res.send(doc); 
-				}
-                 else{
-                     return res.status(404).json({ status: false, message: 'Error updating User' });
-                 }
-             });
-           }        
+                 User.findByIdAndUpdate(userrv._id,{$set: userr},{new:true},(err,doc)=>{
+					 if(!err){ 
+						console.log(" NO ERROR ");
+						res.send(doc); 
+					}
+					else{
+						console.log("ERROR ");
+						return res.status(404).json({ status: false, message: 'Error updating User' });
+					}
+				});
          }
      );  
  }

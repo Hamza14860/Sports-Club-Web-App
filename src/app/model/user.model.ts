@@ -9,6 +9,7 @@ export class User {
         this.name=nm;
         this.email=em;
         this.opponentRank=or;
+        this.dailyTimings=dt;
         this.password=ps;
     }
 }
