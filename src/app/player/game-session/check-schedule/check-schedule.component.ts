@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./check-schedule.component.css']
 })
 export class CheckScheduleComponent implements OnInit {
-  
+  oppplayerG=" NA";
+  coachG=" NA";
+  timeG=" NA";
+  courtG=" NA";
   constructor() { 
     
   }

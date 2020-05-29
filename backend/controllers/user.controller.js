@@ -8,6 +8,9 @@ module.exports.register = (req, res, next) => {
     var user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
+	user.opponentRank = "Beginner";
+	user.dailyTimings = "";
+	user.games = [];
     user.password = req.body.password;
     user.save((err, doc) => {
         if (!err)
@@ -45,6 +48,31 @@ module.exports.update = (req, res, next) => {
      );  
  }
  
+ module.exports.updateUser = (req, res, next) => {
+	 console.log("UPDATE"+req.body.email);
+    var userr = {
+     name: req.body.name,
+     email: req.body.email,
+	 opponentRank: req.body.opponentRank,
+	 dailyTimings: req.body.dailyTimings,
+	 games: req.body.games
+    };
+    User.findOne({ email: req.body.email },
+     (err, userrv) => {
+                 User.findByIdAndUpdate(userrv._id,{$set: userr},{new:true},(err,doc)=>{
+					 if(!err){ 
+						console.log(" NO ERROR ");
+						res.send(doc); 
+					}
+					else{
+						console.log("ERROR ");
+						return res.status(404).json({ status: false, message: 'Error updating User' });
+					}
+				});
+         }
+     );  
+ }
+ 
 
 module.exports.authenticate = (req, res, next) => {
     // call for passport authentication
@@ -64,7 +92,7 @@ module.exports.userProfile = (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['name','email']) });
+                return res.status(200).json({ status: true, user : _.pick(user,['name','email','opponentRank','dailyTimings','games']) });
         }
     );
 }

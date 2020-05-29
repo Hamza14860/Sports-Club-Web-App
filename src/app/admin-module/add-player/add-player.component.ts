@@ -41,6 +41,9 @@ export class AddPlayerComponent implements OnInit {
     this.userService.selectedUser = {
       name: '',
       email: '',
+      opponentRank: '',
+      dailyTimings: '',
+      games: [],
       password: ''
     };
     form.resetForm();

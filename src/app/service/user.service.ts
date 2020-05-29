@@ -13,6 +13,9 @@ export class UserService {
   selectedUser: User = {
     name: '',
     email: '',
+    opponentRank: '',
+    dailyTimings: '',
+    games: [],
     password: ''
   };
 
@@ -28,6 +31,9 @@ export class UserService {
 
   login(authCredentials) {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
+  }
+  updateUser(user: User){
+    return this.http.put(environment.apiBaseUrl+'/updateUser',user,this.noAuthHeader);
   }
 
   getUserProfile() {
