@@ -19,6 +19,10 @@ var userSchema = new mongoose.Schema({
 	dailyTimings: {
 		type: String
 	},
+	games : { 
+		type : Array , 
+		"default" : [] 
+	},
     password: {
         type: String,
         required: 'Password can\'t be empty',

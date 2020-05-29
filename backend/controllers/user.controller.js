@@ -10,6 +10,7 @@ module.exports.register = (req, res, next) => {
     user.email = req.body.email;
 	user.opponentRank = "Beginner";
 	user.dailyTimings = "";
+	user.games = [];
     user.password = req.body.password;
     user.save((err, doc) => {
         if (!err)
@@ -53,7 +54,8 @@ module.exports.update = (req, res, next) => {
      name: req.body.name,
      email: req.body.email,
 	 opponentRank: req.body.opponentRank,
-	 dailyTimings: req.body.dailyTimings
+	 dailyTimings: req.body.dailyTimings,
+	 games: req.body.games
     };
     User.findOne({ email: req.body.email },
      (err, userrv) => {
@@ -90,7 +92,7 @@ module.exports.userProfile = (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['name','email','opponentRank','dailyTimings']) });
+                return res.status(200).json({ status: true, user : _.pick(user,['name','email','opponentRank','dailyTimings','games']) });
         }
     );
 }

@@ -43,6 +43,7 @@ export class AddPlayerComponent implements OnInit {
       email: '',
       opponentRank: '',
       dailyTimings: '',
+      games: [],
       password: ''
     };
     form.resetForm();

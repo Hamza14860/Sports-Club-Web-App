@@ -40,6 +40,7 @@ export class SignUpComponent implements OnInit {
       email: '',
       opponentRank: '',
       dailyTimings: '',
+      games: [],
       password: ''
     };
     form.resetForm();

@@ -15,6 +15,7 @@ export class UserService {
     email: '',
     opponentRank: '',
     dailyTimings: '',
+    games: [],
     password: ''
   };
 

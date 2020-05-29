@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
   userUpdaed;
 
   constructor(private userService: UserService, private router: Router) {
-
       this.sportsForm = new FormGroup({
         rank: this.rankControl,
         time: this.timeControl
@@ -57,9 +56,15 @@ export class UserProfileComponent implements OnInit {
         this.sportsForm.setControl('rank',this.rankControl);
 
         //initializing time with value gotten from DB
-        console.log(this.userDetails.dailyTimings);
+        //console.log(this.userDetails.dailyTimings);
         this.timeControl = new FormControl(this.userDetails.dailyTimings);
         this.sportsForm.setControl('time',this.timeControl);
+
+        //initializing games array
+        //console.log(this.userDetails.games);
+        this.gameControl = new FormControl(this.userDetails.games);
+        this.sportsForm.setControl('game',this.gameControl);
+
 
       },
       err => { 
@@ -81,7 +86,7 @@ export class UserProfileComponent implements OnInit {
     console.log(this.gameControl.value);
     console.log(this.timeControl.value);
     // console.log(this.time);
-    this.userUpdaed = new User(this.userDetails.name,this.userDetails.email,this.rankControl.value,this.timeControl.value,this.userDetails.password);
+    this.userUpdaed = new User(this.userDetails.name,this.userDetails.email,this.rankControl.value,this.timeControl.value,this.userDetails.password,this.gameControl.value);
   
 
     this.userService.updateUser(this.userUpdaed).subscribe(
