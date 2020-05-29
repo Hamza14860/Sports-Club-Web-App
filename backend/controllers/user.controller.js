@@ -8,6 +8,8 @@ module.exports.register = (req, res, next) => {
     var user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
+	user.opponentRank = "Beginner";
+	user.dailyTimings = "";
     user.password = req.body.password;
     user.save((err, doc) => {
         if (!err)
@@ -45,6 +47,33 @@ module.exports.update = (req, res, next) => {
      );  
  }
  
+ module.exports.updateUser = (req, res, next) => {
+    var userr = {
+     name: req.body.name,
+     email: req.body.email,
+	 opponentRank: req.body.opponentRank,
+	 dailyTimings: req.body.dailyTimings,
+     password: req.body.password
+    };
+    User.findOne({ email: req.body.email },
+     (err, userrv) => {
+           if (userrv._id != req.body._id){
+             return res.status(404).json({ status: false, message: 'Email Already Exists' });
+         }
+         else{
+             User.findByIdAndUpdate(req.body._id,{$set: userr},{new:true},(err,doc)=>{
+                 if(!err){ 
+					res.send(doc); 
+				}
+                 else{
+                     return res.status(404).json({ status: false, message: 'Error updating User' });
+                 }
+             });
+           }        
+         }
+     );  
+ }
+ 
 
 module.exports.authenticate = (req, res, next) => {
     // call for passport authentication
@@ -64,7 +93,7 @@ module.exports.userProfile = (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['name','email']) });
+                return res.status(200).json({ status: true, user : _.pick(user,['name','email','opponentRank','dailyTimings']) });
         }
     );
 }

@@ -38,6 +38,8 @@ export class SignUpComponent implements OnInit {
     this.userService.selectedUser = {
       name: '',
       email: '',
+      opponentRank: '',
+      dailyTimings: '',
       password: ''
     };
     form.resetForm();

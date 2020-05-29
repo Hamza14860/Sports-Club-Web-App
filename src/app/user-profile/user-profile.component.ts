@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { NgForm, FormControl, FormGroup } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Time } from '@angular/common';
+import {User} from '../model/user.model';
 
 
 interface Rank {
@@ -23,20 +24,21 @@ export class UserProfileComponent implements OnInit {
   gameList: string[] = ['Tennis', 'Badminton', 'Table Tennis', 'Squash'];
 
   ranks: Rank[] = [
-    {value: 'beginner', viewValue: 'Beginner'},
-    {value: 'medium', viewValue: 'Medium'},
-    {value: 'advance', viewValue: 'Advance'}
+    {value: 'Beginner', viewValue: 'Beginner'},
+    {value: 'Medium', viewValue: 'Medium'},
+    {value: 'Advance', viewValue: 'Advance'}
   ];
 
   public time: string = null;
 
   gameControl = new FormControl();
   rankControl = new FormControl(this.ranks[0].value);
-  timeControl = new FormControl();
+  timeControl = new FormControl('12:40');
 
-
+  userUpdaed;
 
   constructor(private userService: UserService, private router: Router) {
+
       this.sportsForm = new FormGroup({
         rank: this.rankControl,
         time: this.timeControl
@@ -49,6 +51,16 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user']; 
+
+        //initializing rank with value gotten from DB
+        this.rankControl = new FormControl(this.userDetails.opponentRank);
+        this.sportsForm.setControl('rank',this.rankControl);
+
+        //initializing time with value gotten from DB
+        console.log(this.userDetails.dailyTimings);
+        this.timeControl = new FormControl(this.userDetails.dailyTimings);
+        this.sportsForm.setControl('time',this.timeControl);
+
       },
       err => { 
         console.log(err);   
@@ -67,8 +79,25 @@ export class UserProfileComponent implements OnInit {
   onSubmit() {
     console.log(this.rankControl.value);
     console.log(this.gameControl.value);
-    console.log(this.timeControl.value );
+    console.log(this.timeControl.value);
     // console.log(this.time);
+    this.userUpdaed = new User(this.userDetails.name,this.userDetails.email,this.rankControl.value,this.timeControl.value,this.userDetails.password);
+  
+
+    this.userService.updateUser(this.userUpdaed).subscribe(
+      res => {
+        console.log("Updated");
+
+      },
+      err => {
+        console.log("Not Updated");
+        if (err.status === 422) {
+          console.log(err+" NOT UPDATED");
+        }
+        else
+        console.log('Something went wrong.Please contact admin.');
+      }
+    );
 
   }
 

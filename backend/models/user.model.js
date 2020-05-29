@@ -13,6 +13,12 @@ var userSchema = new mongoose.Schema({
         required: 'Email can\'t be empty',
         unique: true
     },
+	opponentRank: {
+		type: String
+	},
+	dailyTimings: {
+		type: String
+	},
     password: {
         type: String,
         required: 'Password can\'t be empty',

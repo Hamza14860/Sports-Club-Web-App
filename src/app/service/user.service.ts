@@ -13,6 +13,8 @@ export class UserService {
   selectedUser: User = {
     name: '',
     email: '',
+    opponentRank: '',
+    dailyTimings: '',
     password: ''
   };
 
@@ -28,6 +30,9 @@ export class UserService {
 
   login(authCredentials) {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
+  }
+  updateUser(user: User){
+    return this.http.post(environment.apiBaseUrl+'/updateUser',user,this.noAuthHeader);
   }
 
   getUserProfile() {

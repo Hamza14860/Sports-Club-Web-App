@@ -23,6 +23,8 @@ router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.get('/playerHome',jwtHelper.verifyJwtToken, ctrlUser.playerHome);
+router.put('/updateUser',ctrlUser.updateUser);
+
 
 
 router.get('/admin-auth',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
