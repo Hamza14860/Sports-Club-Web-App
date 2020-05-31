@@ -64,3 +64,27 @@ module.exports.getCourts = (req,res,next)=>{
     });
     
 }
+
+module.exports.updateCourt = (req, res, next) => {
+   console.log("UPDATE"+req.body.courtName);
+   var userr = {
+    CourtNo:req.body.CourtNo,
+    courtName:req.body.courtName,
+    gameName:req.body.gameName,
+    isFree:req.body.isFree,
+   };
+   Court.findOne({ courtName: req.body.courtName },
+    (err, userrv) => {
+                Court.findByIdAndUpdate(userrv._id,{$set: userr},{new:true},(err,doc)=>{
+                    if(!err){ 
+                       console.log(" NO ERROR ");
+                       res.send(doc); 
+                   }
+                   else{
+                       console.log("ERROR ");
+                       return res.status(404).json({ status: false, message: 'Error updating User' });
+                   }
+               });
+        }
+    );  
+}

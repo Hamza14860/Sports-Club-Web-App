@@ -25,7 +25,7 @@ router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.get('/playerHome',jwtHelper.verifyJwtToken, ctrlUser.playerHome);
 router.put('/updateUser',ctrlUser.updateUser);
-
+router.put('/updateCourt',ctrlCourt.updateCourt);
 
 
 router.get('/admin-auth',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
@@ -86,10 +86,22 @@ router.get('/coach-user/:email', function(req, res) {
     );
 });
 
+router.get('/courtget/:courtName', function(req, res) { 
+    console.log("Got it for Court"+req.params.courtName);
+    Court.findOne({ courtName: req.params.courtName},
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(coach);
+        }
+    );
+});
+
 
 router.get('/session-today/:date/:coach', function(req, res) { 
-    console.log("Got it sess"+req.params.date);
-    Session.findOne({ Date: req.params.date,CoachID:req.params.coach},
+    console.log("Got it sess"+req.params.date+req.params.coach);
+    Session.find({ Date: req.params.date,CoachID:req.params.coach},
         (err, coach) => {
             if (!coach)
                 return res.status(404).json({ status: false, message: 'User record not found.' });

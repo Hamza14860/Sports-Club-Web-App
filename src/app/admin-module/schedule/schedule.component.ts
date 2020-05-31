@@ -30,12 +30,14 @@ export class ScheduleComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   session;
+  courtR:Court;
   email:string;
   curdate:string;
   selectedgame;
   showSucessMessage: Boolean;
   serverErrorMessages: String;
   today;
+  newCourt;
   coaches:Coach[];
   courts:Court[];
   games: string[] = [
@@ -67,6 +69,9 @@ export class ScheduleComponent implements OnInit {
           this.serverErrorMessages = 'Something went wrong.Please contact admin.';
       }
     );
+    this.newCourt = new Court(this.courtR.CourtNo,this.courtR.courtName,this.courtR.gameName,"False"); 
+    
+    //this.courtR.isFree = "False";
     this.router.navigate(['/notifications']);
   }
 

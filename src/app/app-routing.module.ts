@@ -7,7 +7,6 @@ import { AdminHomeComponent} from './admin-module/admin-home/admin-home.componen
 
 import { AdminAuthComponent} from './admin-module/admin-auth/admin-auth.component';
 import { NotificationComponent} from './admin-module/notification/notification.component';
-import { CoachScheduleComponent} from './admin-module/coach-schedule/coach-schedule.component';
 import { ScheduleComponent} from './admin-module/schedule/schedule.component';
 import { AddDataComponent} from './admin-module/add-data/add-data.component';
 import { AddPlayerComponent} from './admin-module/add-player/add-player.component';
@@ -43,8 +42,6 @@ import {SchedComponent} from './coach-module/sched/sched.component';
 const routes: Routes = [
   { path: 'admin-home', component: AdminHomeComponent } ,
   { path: 'home', component: HomeComponent } ,
-
-  { path: 'coach-schedule', component: CoachScheduleComponent } ,
 
   { path: 'add-coach', component: AddDataComponent } ,
 

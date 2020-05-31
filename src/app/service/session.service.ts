@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 
 import {Session} from '../model/session.model';
 import {Court} from '../model/court.model';
+import {Rank} from '../model/rank.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,11 @@ export class SessionService {
     OpponentName:''
   };
 
+  selectedRank: Rank ={
+    playerID:'',
+    gameName:'',
+    ranking:''
+  };
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private http: HttpClient) { }
@@ -37,6 +43,13 @@ export class SessionService {
     return this.http.get<Court[]>(environment.apiBaseUrl+'/get-courts/'+game);
   }
 
+  getCourtn(name:string){
+    return this.http.get<Court>(environment.apiBaseUrl+'/courtget/'+name);
+  }
+
+  updateCourt(court:Court){
+    return this.http.put(environment.apiBaseUrl+'/updateCourt',court,this.noAuthHeader);
+  }
   getallCourts(){
     return this.http.get<Court[]>(environment.apiBaseUrl+'/courts');
   }
@@ -47,5 +60,9 @@ export class SessionService {
 
   getSessions(){
     return this.http.get<Session[]>(environment.apiBaseUrl+'/sessions');
+  }
+
+  addRank(rank:Rank){
+    return this.http.post(environment.apiBaseUrl+'/add-rank',rank,this.noAuthHeader);
   }
 }

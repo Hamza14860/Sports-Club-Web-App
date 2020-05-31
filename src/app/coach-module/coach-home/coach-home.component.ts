@@ -11,6 +11,7 @@ import { Coach } from 'src/app/model/coach.model';
 export class CoachHomeComponent implements OnInit {
 
   coachd:Coach;
+  coaches;
   coachname:String;
   sportsForm:FormGroup;
 
@@ -29,7 +30,7 @@ export class CoachHomeComponent implements OnInit {
 
     this.coachname = localStorage.getItem('coachuser');
     this.userService.getCoachProfile(this.coachname).subscribe((data: Coach) => this.coachd = data);
-
+    this.userService.getCoaches().subscribe((data: Coach[]) => this.coaches = data);
   }
 
 
