@@ -71,9 +71,8 @@ export class ChooseGamesComponent implements OnInit {
     // console.log(this.attendance.time);
     // console.log(this.attendance.message);
 
-
     this.userService.getattends(this.currdate,this.attendance.playerEmail).subscribe((data: Attendance[]) => this.attendances = data);
-  
+
     if(this.attendances.length>0)
     {
         this.marked = true;
