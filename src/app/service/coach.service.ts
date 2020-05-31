@@ -25,8 +25,8 @@ export class CoachService {
     return this.http.post(environment.apiBaseUrl+'/registerc',user,this.noAuthHeader);
   }
 
-  loginC(authCredentials) {
-    return this.http.post(environment.apiBaseUrl + '/authenticatec', authCredentials,this.noAuthHeader);
+  loginC(email:string,password:string) {
+    return this.http.get<Coach>(environment.apiBaseUrl + '/authenticatec/'+email+'/'+password);
   }
 
   getCoachProfile(email:String) {

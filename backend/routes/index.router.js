@@ -189,6 +189,19 @@ router.get('/delete-coach/:id', function(req, res) {
 
 });
 
+router.get('/authenticatec/:email/:password', function(req, res) { 
+    console.log("login request cosch"+req.params.email+req.params.password);
+    Coach.findOne({ email: req.params.email,password:req.params.password},
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(coach);
+        }
+    );
+
+});
+
 router.get('/get-courts/:game', function(req, res) { 
     console.log("Got game "+req.params.game);
     Court.find({ gameName: req.params.game,isFree:'True'},

@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 import { CoachService } from '../../service/coach.service';
 import { environment } from '../../../environments/environment';
-
+import {Coach} from 'src/app/model/coach.model';
 @Component({
   selector: 'app-coach-auth',
   templateUrl: './coach-auth.component.html',
@@ -12,7 +12,8 @@ import { environment } from '../../../environments/environment';
 })
 export class CoachAuthComponent implements OnInit {
   constructor(private userService: CoachService,private router : Router) { }
-
+ isPresent:Boolean;
+ coachf;
   model ={
     email :'',
     password:''
@@ -29,17 +30,15 @@ export class CoachAuthComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-    this.userService.loginC(form.value).subscribe(
-      res => {
-        environment.navCheck=false;
-        this.userService.setToken(res['token']);
-        localStorage.setItem('coachuser',this.model.email);
-        this.router.navigateByUrl('/coach-home');
-      },
-      err => {
-        this.serverErrorMessages = err.error.message;
-      }
-    );
+    this.userService.loginC(this.model.email,this.model.password).subscribe((data:Coach)=>this.coachf=data);
+    
+    if(Object.keys(this.coachf).length === 0){
+      this.serverErrorMessages="Some Error Found";
+    }
+    else{
+      localStorage.setItem('coachuser',this.model.email);
+      this.router.navigate(['/coach-home']);
+    }
   }
 
 }

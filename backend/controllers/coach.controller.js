@@ -61,14 +61,14 @@ module.exports.delete = (req,res,next) => {
 
 module.exports.authenticate = (req, res, next) => {
     // call for passport authentication
-    passport.authenticate('local', (err, coach, info) => {       
-        // error from passport middleware
-        if (err) return res.status(400).json(err);
-        // registered user
-        else if (coach) return res.status(200).json({ "token": coach.generateJwt() });
-        // unknown user or wrong password
-        else return res.status(404).json(info);
-    })(req, res);
+    Coach.findOne({ _id: req._id },
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json({ status: true, coach : _.pick(coach,['name','email']) });
+        }
+    );
 }
 
 module.exports.coachProfile = (req, res, next) =>{
