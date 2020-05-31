@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgForm } from "@angular/forms";
+import { CoachService } from '../../service/coach.service';
+import { Router } from "@angular/router";
+import { Coach } from 'src/app/model/coach.model';
 @Component({
   selector: 'app-update-coach',
   templateUrl: './update-coach.component.html',
@@ -7,9 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateCoachComponent implements OnInit {
 
-  constructor() { }
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  showSucessMessage: boolean;
+  serverErrorMessages: string;
+  usernew:Coach;
+  email:string;
+  constructor(public userService: CoachService,private router : Router) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(form: NgForm) {
+
+    this.email = localStorage.getItem('updateEmailCoach');
+    this.usernew = new Coach(this.userService.selectedUser.name,this.email,this.userService.selectedUser.password);
+    this.userService.updateCoach(this.usernew).subscribe(
+      res => {
+        this.showSucessMessage = true;
+        setTimeout(() => this.showSucessMessage = false, 4000);
+        this.resetForm(form);
+      },
+      err => {
+        if (err.status === 422) {
+          this.serverErrorMessages = err.error.join('<br/>');
+        }
+        else
+          this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+      }
+    );
+    this.router.navigate(['/admin-view']);
+    
+  }
+
+  resetForm(form: NgForm) {
+    this.userService.selectedUser = {
+      name: '',
+      email: '',
+      password: ''
+    };
+    form.resetForm();
+    this.serverErrorMessages = '';
+  }
 }

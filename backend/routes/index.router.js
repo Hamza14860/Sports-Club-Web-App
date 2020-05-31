@@ -25,6 +25,7 @@ router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.get('/playerHome',jwtHelper.verifyJwtToken, ctrlUser.playerHome);
 router.put('/updateUser',ctrlUser.updateUser);
+router.put('/updateCoach',ctrlCoach.updateCoach);
 router.put('/updateCourt',ctrlCourt.updateCourt);
 
 
@@ -85,6 +86,19 @@ router.get('/coach-user/:email', function(req, res) {
         }
     );
 });
+
+router.get('/user-find/:email', function(req, res) { 
+    console.log("Got it for User"+req.params.email);
+    User.findOne({ email: req.params.email},
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(coach);
+        }
+    );
+});
+
 
 router.get('/courtget/:courtName', function(req, res) { 
     console.log("Got it for Court"+req.params.courtName);

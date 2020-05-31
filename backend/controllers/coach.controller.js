@@ -90,3 +90,26 @@ module.exports.getCoaches = (req,res,next)=>{
     });
     
 }
+
+module.exports.updateCoach = (req, res, next) => {
+   console.log("UPDATE"+req.body.email);
+   var userr = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+   };
+   Coach.findOne({ email: req.body.email },
+    (err, userrv) => {
+                Coach.findByIdAndUpdate(userrv._id,{$set: userr},{new:true},(err,doc)=>{
+                    if(!err){ 
+                       console.log(" NO ERROR ");
+                       res.send(doc); 
+                   }
+                   else{
+                       console.log("ERROR ");
+                       return res.status(404).json({ status: false, message: 'Error updating User' });
+                   }
+               });
+        }
+    );  
+}

@@ -57,10 +57,6 @@ export class CrudCompComponent implements OnInit {
     this.router.navigate(['/admin-view']);
   }
 
-  userUpdate(id:string){
-    
-  }
-
   coachDelete(id:string){
 
     this.coachService.deleteProfile(id).subscribe(
@@ -75,12 +71,17 @@ export class CrudCompComponent implements OnInit {
       }
     );
     this.ngOnInit();
-    this.router.navigate(['/admin-view']);
-
+  
   }
 
-  coachUpdate(id:string){
-    
+  coachUpdate(email:string){
+    localStorage.setItem('updateEmailCoach',email);
+    this.router.navigate(['/update-coach']);
+  }
+
+  uUpdate(email:string){
+    localStorage.setItem('updateEmailPlayer',email);
+    this.router.navigate(['/update-player']);
   }
 
 }

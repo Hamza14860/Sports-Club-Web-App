@@ -36,6 +36,10 @@ export class UserService {
     return this.http.put(environment.apiBaseUrl+'/updateUser',user,this.noAuthHeader);
   }
 
+  findUser(email: string){
+    return this.http.get<User>(environment.apiBaseUrl+'/user-find/'+email);
+  }
+
   getUserProfile() {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }

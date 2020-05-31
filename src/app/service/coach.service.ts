@@ -42,6 +42,10 @@ export class CoachService {
   }
   //Helper Methods
 
+  updateCoach(user: Coach){
+    return this.http.put(environment.apiBaseUrl+'/updateCoach',user,this.noAuthHeader);
+  }
+  
   deleteProfile(id:string) {
     
     return this.http.get(environment.apiBaseUrl+ '/delete-coach/'+id);
