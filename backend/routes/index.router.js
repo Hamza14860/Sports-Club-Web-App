@@ -190,7 +190,7 @@ router.get('/delete-coach/:id', function(req, res) {
 });
 
 router.get('/authenticatec/:email/:password', function(req, res) { 
-    console.log("login request cosch"+req.params.email+req.params.password);
+    console.log("login request coach"+req.params.email+req.params.password);
     Coach.findOne({ email: req.params.email,password:req.params.password},
         (err, coach) => {
             if (!coach)

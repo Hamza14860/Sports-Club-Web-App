@@ -29,7 +29,7 @@ export class AdminAuthComponent implements OnInit {
   onSubmit(form : NgForm){
     this.usern = this.model.username;
     this.passw = this.model.password;
-    if(this.usern == 'admin' && this.passw == 'admin'){
+    if(this.usern === 'admin' && this.passw === 'admin'){
       this.serverErrorMessages = '';
       this.router.navigate(['/admin-home']);
     }
