@@ -84,6 +84,7 @@ module.exports.coachProfile = (req, res, next) =>{
 
 
 module.exports.getCoaches = (req,res,next)=>{
+    console.log("coaches all call");
     Coach.find(function(err,coaches){
         res.json(coaches);
     });

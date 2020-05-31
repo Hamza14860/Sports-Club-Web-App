@@ -5,20 +5,26 @@ const _ = require('lodash');
 const Session = mongoose.model('Session');
 
 module.exports.addSession = (req, res, next) => {
+    console.log("Called Here "+req.body.PlayerID+req.body.Time);
     var session = new Session();
     session.SessionID = req.body.SessionID;
     session.PlayerID=req.body.PlayerID;
     session.CoachID=req.body.CoachID;
     session.Game=req.body.Game;
+    session.Date = req.body.Date;
     session.Time=req.body.Time;
     session.Court=req.body.Court;
     session.OpponentName=req.body.OpponentName;
     session.save((err, doc) => {
-        if (!err)
+        if (!err){
+            console.log("saved");
             res.send(doc);
+        }
         else {
-            if (err.code == 11000)
+            console.log(err);
+            if (err.code == 11000){
                 res.status(422).send(['Error saving model']);
+            }
             else
                 return next(err);
         }
@@ -61,6 +67,7 @@ module.exports.getSession = (req, res, next) =>{
 }
 
 module.exports.getSessions = (req,res,next)=>{
+    console.log("called");
     Session.find(function(err,users){
         res.json(users);
     });

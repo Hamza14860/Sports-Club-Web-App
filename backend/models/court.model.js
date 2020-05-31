@@ -17,7 +17,7 @@ var courtSchema = new mongoose.Schema({
         required: 'game name can\'t be empty'
     },
     isFree: {
-        type: Boolean,
+        type: String,
         required: 'can\'t be empty'
     },
     });

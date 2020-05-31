@@ -58,6 +58,7 @@ module.exports.getCourt = (req, res, next) =>{
 }
 
 module.exports.getCourts = (req,res,next)=>{
+    console.log("Courts call");
     Court.find(function(err,users){
         res.json(users);
     });

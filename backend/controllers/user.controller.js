@@ -110,6 +110,7 @@ module.exports.playerHome = (req, res, next) =>{
 }
 
 module.exports.getPlayers = (req,res,next)=>{
+    console.log("Users call");
     User.find(function(err,users){
         res.json(users);
     });

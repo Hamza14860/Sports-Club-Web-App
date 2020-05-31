@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 //
 import { AdminHomeComponent } from '../admin-module/admin-home/admin-home.component';
 
@@ -24,6 +25,7 @@ import { UpdateCoachComponent } from './update-coach/update-coach.component';
 import { AdminAuthComponent } from './admin-auth/admin-auth.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { CoachScheduleComponent } from './coach-schedule/coach-schedule.component';
 
 
 
@@ -38,6 +40,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
     AdminAuthComponent,
     NotificationComponent,
     ScheduleComponent,
+    CoachScheduleComponent,
   // PlayerCreateComponent,
   // PlayerEditComponent,
   // PlayerListComponent
@@ -47,6 +50,9 @@ import { ScheduleComponent } from './schedule/schedule.component';
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
    

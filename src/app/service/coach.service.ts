@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {Coach} from '../model/coach.model';
+import {Session} from '../model/session.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -36,6 +37,9 @@ export class CoachService {
     return this.http.get<Coach[]>(environment.apiBaseUrl + '/coaches');
   }
 
+  getSchedule(date:String,email:String){
+    return this.http.get<Session[]>('http://localhost:3000/api/session-today/'+date+'/'+email);
+  }
   //Helper Methods
 
   deleteProfile(id:string) {

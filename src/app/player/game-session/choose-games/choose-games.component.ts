@@ -21,7 +21,7 @@ export class ChooseGamesComponent implements OnInit {
   currtime;
   marked:Boolean = false;
   attendance;
- len;
+  len;
   buttonText= "Mark Attendance"
 
 

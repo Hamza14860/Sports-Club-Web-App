@@ -52,42 +52,61 @@ backgroundPosition: 'center',
 backgroundRepeat: 'no-repeat',
 backgroundSize: 'cover'}">
 
+<div style="height: 100px;">
+
+</div>
+<div style="text-align: center;font-size: larger;">
+    <p>Create Session{{coaches.length}}</p>
+</div>
 <div id="formContent">
     
 <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
 
-    <input type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Full Name"
-    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
-    <div *ngIf="signUpForm.submitted && !name.valid">
+    <input type="text" #SessionID="ngModel" [(ngModel)]="userService.selectedSession.SessionID" name="SessionID" placeholder="SessionID"
+    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !SessionID.valid }">
+    <div *ngIf="signUpForm.submitted && !SessionID.valid">
       <label class="validation-message">This field is required.</label>
-    </div>
-
-    <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
-    required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
-    <div *ngIf="signUpForm.submitted && email.errors">
-      <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
-      <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
-    </div>
+    </div><br>
     
-    <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
-    minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
-    <div *ngIf="signUpForm.submitted && password.errors">
-      <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
-      <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
-    </div>
-    <input type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Full Name"
-    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
-    <input type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Full Name"
-    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
-    <input type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Full Name"
-    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
-    <input type="text" #name="ngModel" [(ngModel)]="userService.selectedUser.name" name="name" placeholder="Full Name"
-    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !name.valid }">
+    <input type="text" #OpponentName="ngModel" [(ngModel)]="userService.selectedSession.OpponentName" name="OpponentName" placeholder="OpponentName"
+    required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !OpponentName.valid }">
+    <div *ngIf="signUpForm.submitted && !OpponentName.valid">
+        <label class="validation-message">This field is required.</label>
+    </div><br>
 
+    <label>Game</label>
+    <mat-form-field  style="width: 70%;">
+        <select [formControl]="gameControl" name="game" class="form-control" style="width: 80%;" >
+            <option [value]=""></option>
+            <option *ngFor="let game of games" [value]="game">{{game}}</option>
+        </select>
+    </mat-form-field><br>
+
+    <label>Court</label>
+    <mat-form-field style="width: 70%;">
+        <select [formControl]="courtControl" name="court" class="form-control" style="width: 80%;">
+            <option [value]=""></option>
+            <option *ngFor="let crt of courts" [value]="crt.courtName">{{crt.courtName}}</option>
+        </select>
+    </mat-form-field><br>
+    
+    <label>Coach</label>
+    <mat-form-field  style="width: 70%;">
+        <select [formControl]="coachControl" name="cname" class="form-control" style="width: 80%;" >
+            <option [value]=""></option>
+            <option *ngFor="let coach of coaches" [value]="coach.email">{{coach.email}}</option>
+        </select>
+    </mat-form-field><br>
+    
+    <label>Time</label>
+    <mat-form-field >
+        <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [(ngModel)]='time' [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00"/>    
+    </mat-form-field>
+    <br><br>
     <input type="submit" value="Add Session">
 </form>
 
-</div>
+</div>  
 
 <!-- Success message -->
 <div class="success" *ngIf="showSucessMessage">

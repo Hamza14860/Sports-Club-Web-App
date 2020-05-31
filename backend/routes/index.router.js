@@ -6,6 +6,7 @@ const User = mongoose.model('User');
 const Coach = mongoose.model('Coach');
 const Schedule = mongoose.model('Schedule');
 const Court = mongoose.model('Court');
+const Session = mongoose.model('Session');
 const Attendance = mongoose.model('Attendance');
 
 const ctrlUser = require('../controllers/user.controller');
@@ -86,6 +87,18 @@ router.get('/coach-user/:email', function(req, res) {
 });
 
 
+router.get('/session-today/:date/:coach', function(req, res) { 
+    console.log("Got it sess"+req.params.date);
+    Session.findOne({ Date: req.params.date,CoachID:req.params.coach},
+        (err, coach) => {
+            if (!coach)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(coach);
+        }
+    );
+});
+
 router.get('/attend-of/:date/:playerEmail', function(req, res) { 
     console.log("Got it"+req.params.date);
     Attendance.find({ date: req.params.date,playerEmail:req.params.playerEmail},
@@ -124,6 +137,19 @@ router.get('/delete-user/:id', function(req, res) {
 
 });
 
+router.get('/delete-court/:id', function(req, res) { 
+    
+    Court.findByIdAndRemove(req.params.id,(err,doc)=>{
+        if(!err){
+            res.send(doc);
+        }
+        else{
+            return res.status(404).json({ status: false, message: 'Error in deleting user' });
+        }
+    });
+
+});
+
 router.get('/delete-coach/:id', function(req, res) { 
     
     Coach.findByIdAndRemove(req.params.id,(err,doc)=>{
@@ -134,6 +160,19 @@ router.get('/delete-coach/:id', function(req, res) {
             return res.status(404).json({ status: false, message: 'Error in deleting user' });
         }
     });
+
+});
+
+router.get('/get-courts/:game', function(req, res) { 
+    console.log("Got game "+req.params.game);
+    Court.find({ gameName: req.params.game,isFree:'True'},
+        (err, attend) => {
+            if (!attend)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json(attend);
+        }
+    );
 
 });
 

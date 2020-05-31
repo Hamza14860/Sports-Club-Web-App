@@ -27,10 +27,9 @@ export class NotificationComponent implements OnInit {
     this.attendService.getattendd(this.currdate).subscribe((data:Attendance[])=>this.notifications=data);
   }
   
-  onSchedule(email:String){
-
-    
-
+  onSchedule(email:string){
+    localStorage.setItem('sessname',email);
+    this.router.navigate(['/schedule']);
   }
   
 

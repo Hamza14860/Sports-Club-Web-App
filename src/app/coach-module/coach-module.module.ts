@@ -10,16 +10,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { CoachAuthComponent } from './coach-auth/coach-auth.component';
 import { CoachHomeComponent } from './coach-home/coach-home.component';
-import { CoachScheduleComponent } from './coach-schedule/coach-schedule.component';
+import { SchedComponent } from './sched/sched.component';
 import { CoachRanksComponent } from './coach-ranks/coach-ranks.component';
-
-
+import {MatSelectModule} from '@angular/material/select'; 
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [CoachAuthComponent, CoachHomeComponent, CoachScheduleComponent, CoachRanksComponent],
+  declarations: [CoachAuthComponent,SchedComponent ,CoachHomeComponent,CoachRanksComponent],
   imports: [
     CommonModule,
     FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class CoachModuleModule { }

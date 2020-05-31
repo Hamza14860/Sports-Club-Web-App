@@ -21,6 +21,10 @@ var sessionSchema = new mongoose.Schema({
         type: String,
         required: 'Game name can\'t be empty',
     },
+    Date: {
+        type: String,
+        required: 'Date name can\'t be empty',
+    },
     Time: {
         type: String,
         required: 'Time can\'t be empty',
