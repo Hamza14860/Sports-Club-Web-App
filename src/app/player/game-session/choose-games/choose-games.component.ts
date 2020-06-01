@@ -67,7 +67,7 @@ export class ChooseGamesComponent implements OnInit {
 
    
 
-    var messageToSend = this.gameControl.value + " "+ this.timeControl.value;
+    var messageToSend = this.gameControl.value + ","+ this.timeControl.value;
     this.attendance = new Attendance(this.userDetails.email,this.currdate,this.currtime,messageToSend);
     
 
