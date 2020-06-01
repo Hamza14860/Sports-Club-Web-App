@@ -6,6 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { Time } from '@angular/common';
 import {User} from '../model/user.model';
 
+import { SessionService } from '../service/session.service';
+import {Session} from '../model/session.model';
+
+
 
 interface Rank {
   value: string;
@@ -20,6 +24,9 @@ interface Rank {
 export class UserProfileComponent implements OnInit {
   userDetails;
   sportsForm:FormGroup;
+
+  sessions;
+  sessionsPlayer = [];
 
   gameList: string[] = ['Tennis', 'Badminton', 'Table Tennis', 'Squash'];
 
@@ -37,7 +44,7 @@ export class UserProfileComponent implements OnInit {
 
   userUpdaed;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService,private sessionService: SessionService, private router: Router) {
       this.sportsForm = new FormGroup({
         rank: this.rankControl,
         time: this.timeControl
@@ -45,7 +52,7 @@ export class UserProfileComponent implements OnInit {
    }
 
   ngOnInit() {
-    
+    this.sessionService.getSessions().subscribe((data: Session[]) => this.sessions = data);
 
     this.userService.getUserProfile().subscribe(
       res => {
@@ -64,6 +71,15 @@ export class UserProfileComponent implements OnInit {
         //console.log(this.userDetails.games);
         this.gameControl = new FormControl(this.userDetails.games);
         this.sportsForm.setControl('game',this.gameControl);
+
+        this.sessions.forEach(element => {
+
+          if (element.PlayerID == this.userDetails.email){
+            console.log( "Session Found of player: "+ element.SessionID);
+            this.sessionsPlayer.push(element);
+          }
+          
+        });
 
 
       },

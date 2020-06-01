@@ -1,86 +1,120 @@
 <div  class="view" style="background-image: url('./assets/images/back7.jpg'); background-repeat: no-repeat; background-size: cover;">
-    
     <div class="row">
-        <table *ngIf="userDetails" class="table-fill" style="margin-top: 150px;">
-            <thead>
-                <tr>
-                    <th colspan="2" class="text-center">Sports Club Preferences</th>
+        <div class="col-md-6">
+            <table *ngIf="userDetails" class="table-fill" style="margin-top: 150px;">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Sports Club Preferences</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <!-- <form #sportsForm="ngForm" [formGroup]="sportsForm" (ngSubmit)="onSubmit(sportsForm)" > -->
+                            <form [formGroup]="sportsForm" (ngSubmit)="onSubmit()" style="text-align: center;">
+                                <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
+                                    <mat-label>Games Interested In:</mat-label>
+                                    <mat-select [formControl]="gameControl" multiple>
+                                    <mat-option *ngFor="let game of gameList" [value]="game">{{game}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                
+                                <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
+                                    <mat-label for="timeInput">Daily Train Timings (12:00PM-09:00PM):</mat-label>
+                                    <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00"/>    
+                                </mat-form-field>
+                                   
+                                <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
+                                    <mat-label>Opponent Ranking Level</mat-label>
+                                    <mat-select [formControl]="rankControl" name="rank">
+                                      <mat-option disabled>None</mat-option>
+                                      <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                                        {{rank.viewValue}}
+                                      </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+    
+                                <div class="row" >
+                                    <!-- <p hidden>Selected: {{rankControl.value}}</p> -->
+    
+                                    <input style="margin: auto;
+                                    display: block;" type="submit" value="Update">
+                                </div>
+                            </form>
+                        </td>
+                   
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <!-- <form #sportsForm="ngForm" [formGroup]="sportsForm" (ngSubmit)="onSubmit(sportsForm)" > -->
-                        <form [formGroup]="sportsForm" (ngSubmit)="onSubmit()" style="text-align: center;">
-                            <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
-                                <mat-label>Games Interested In:</mat-label>
-                                <mat-select [formControl]="gameControl" multiple>
-                                <mat-option *ngFor="let game of gameList" [value]="game">{{game}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            
-                            <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
-                                <mat-label for="timeInput">Daily Train Timings (12:00PM-09:00PM):</mat-label>
-                                <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00"/>    
-                            </mat-form-field>
-                               
-                            <mat-form-field style="min-width: 150px;max-width: 300px;width: 100%;">
-                                <mat-label>Opponent Ranking Level</mat-label>
-                                <mat-select [formControl]="rankControl" name="rank">
-                                  <mat-option disabled>None</mat-option>
-                                  <mat-option *ngFor="let rank of ranks" [value]="rank.value">
-                                    {{rank.viewValue}}
-                                  </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-
-                            <div class="row" >
-                                <!-- <p hidden>Selected: {{rankControl.value}}</p> -->
-
-                                <input style="margin: auto;
-                                display: block;" type="submit" value="Update">
-                            </div>
-                        </form>
-                    </td>
-               
-            </tr>
-
-            </tbody>
-        </table>
+    
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col-md-6">
+            <table *ngIf="userDetails" class="table-fill" style="margin-top: 150px;">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">User Profile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First Name</td>
+                        <td>{{userDetails.name.split(' ')[0]}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{userDetails.name.split(' ')[1]}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{userDetails.email}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <input type="button" (click)="onLogout()" value="Logout" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     
-    <div class="row">
-        <table *ngIf="userDetails" class="table-fill" style="margin-top: 20px;">
-            <thead>
-                <tr>
-                    <th colspan="2" class="text-center">User Profile</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>First Name</td>
-                    <td>{{userDetails.name.split(' ')[0]}}</td>
-                </tr>
-                <tr>
-                    <td>Last Name</td>
-                    <td>{{userDetails.name.split(' ')[1]}}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{userDetails.email}}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="text-center">
-                        <input type="button" (click)="onLogout()" value="Logout" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
     
   
- 
+    <div class="row">
+        <table *ngIf="userDetails" class="table-fill" style="margin-top: 20px;">
+            <thead >
+                <tr>
+                    <th colspan="2" class="text-center">Game Session History</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Date </td>
+                    <td>Game </td>
+                    <td>Court </td>
+                    <td>Opponent </td>
+                    <td>Time</td>
+
+                </tr>
+                <tr *ngFor="let sess of sessionsPlayer">
+                    <td>{{sess.Date}}</td>
+                    <td>{{sess.Game}} </td>
+                    <td>{{sess.Court}} </td>
+                    <td>{{sess.OpponentName}}</td>
+                    <td>{{sess.Time}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     
     
+</div>
+
+<div  class="view" style="background-image: url('./assets/images/back7.jpg'); background-repeat: no-repeat; background-size: cover;">
+       
+    
+  
 </div>
