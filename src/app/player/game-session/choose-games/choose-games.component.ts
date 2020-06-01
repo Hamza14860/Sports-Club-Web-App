@@ -23,6 +23,7 @@ export class ChooseGamesComponent implements OnInit {
   attendance;
   len;
   buttonText= "Mark Attendance"
+  errorText = "";
 
 
   games: string[] = [
@@ -62,48 +63,55 @@ export class ChooseGamesComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.gameControl.value);
-    console.log(this.timeControl.value );
 
+    if (this.timeControl.value == undefined ){
+      console.log("undefined Time, Time is empty");
+      this.errorText = "Kindly Add Time to Play"
+    }
+
+    else{
+      this.errorText = "";
+      console.log(this.gameControl.value);
+      console.log(this.timeControl.value );
+
+      var messageToSend = this.gameControl.value + ","+ this.timeControl.value;
+      this.attendance = new Attendance(this.userDetails.email,this.currdate,this.currtime,messageToSend);
+      
+  
+      // console.log(this.attendance.playerEmail);
+      // console.log(this.attendance.date);
+      // console.log(this.attendance.time);
+      // console.log(this.attendance.message);
+  
+      // this.userService.getattends(this.currdate,this.attendance.playerEmail).subscribe((data: Attendance[]) => this.attendances = data);
+  
+      if(this.attendances.length>0)
+      {
+        console.log("Attendace Already Marked for today");
+          this.marked = true;
+          this.buttonText = "Attendance Already Marked For Today";
+  
+      }
+  
+      if(this.marked == false)
+      {
+        this.buttonText = "Attendance Marked";
+      }
+  
+  
+      if(!this.marked && this.buttonText == "Attendance Marked"){
+        this.userService.postAttendance(this.attendance).subscribe(
+          res => {
+            console.log("Attendance Marked");
+            //this.buttonText = "Attendance Marked";
+          },
+          err => {
+            console.log("ERROR");
+          }
+        );
+      }
+    }
    
-
-    var messageToSend = this.gameControl.value + ","+ this.timeControl.value;
-    this.attendance = new Attendance(this.userDetails.email,this.currdate,this.currtime,messageToSend);
-    
-
-    // console.log(this.attendance.playerEmail);
-    // console.log(this.attendance.date);
-    // console.log(this.attendance.time);
-    // console.log(this.attendance.message);
-
-    // this.userService.getattends(this.currdate,this.attendance.playerEmail).subscribe((data: Attendance[]) => this.attendances = data);
-
-    if(this.attendances.length>0)
-    {
-      console.log("Attendace Already Marked for today");
-        this.marked = true;
-        this.buttonText = "Attendance Already Marked For Today";
-
-    }
-
-    if(this.marked == false)
-    {
-      this.buttonText = "Attendance Marked";
-    }
-
-
-
-    if(!this.marked && this.buttonText == "Attendance Marked"){
-      this.userService.postAttendance(this.attendance).subscribe(
-        res => {
-          console.log("Attendance Marked");
-          //this.buttonText = "Attendance Marked";
-        },
-        err => {
-          console.log("ERROR");
-        }
-      );
-    }
 
   }
 
