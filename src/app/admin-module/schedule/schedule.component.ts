@@ -69,7 +69,6 @@ export class ScheduleComponent implements OnInit {
           this.serverErrorMessages = 'Something went wrong.Please contact admin.';
       }
     );
-    this.newCourt = new Court(this.courtR.CourtNo,this.courtR.courtName,this.courtR.gameName,"False"); 
     
     //this.courtR.isFree = "False";
     this.router.navigate(['/notifications']);

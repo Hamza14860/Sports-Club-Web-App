@@ -2,6 +2,7 @@ export class Attendance {
     playerEmail: string;
     date: string;
     time: string;
+    done: string;
     message: string;
 
    constructor(em,dt,tm,ms){

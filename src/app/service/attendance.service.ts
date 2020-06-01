@@ -26,6 +26,10 @@ export class AttendanceService {
     return this.http.get<Attendance[]>(environment.apiBaseUrl + '/attends');
   }
 
+  updateAttend(user: Attendance){
+    return this.http.put('http://localhost:3000/api/updateAttend',user,this.noAuthHeader);
+  }
+
   getattends(date:String,email:String){
     return this.http.get<Attendance[]>(environment.apiBaseUrl + '/attend-of/'+date+'/'+email);
   }

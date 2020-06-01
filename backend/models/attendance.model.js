@@ -16,6 +16,9 @@ var attendSchema = new mongoose.Schema({
         type:String,
         required: 'can not be empty',
     },
+    done:{
+        type:String,
+    },
     message: {
         type: String,
         required: 'message can\'t be empty'

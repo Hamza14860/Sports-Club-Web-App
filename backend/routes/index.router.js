@@ -27,6 +27,7 @@ router.get('/playerHome',jwtHelper.verifyJwtToken, ctrlUser.playerHome);
 router.put('/updateUser',ctrlUser.updateUser);
 router.put('/updateCoach',ctrlCoach.updateCoach);
 router.put('/updateCourt',ctrlCourt.updateCourt);
+router.put('/updateAttend',ctrlAttendance.updateAttend);
 
 
 router.get('/admin-auth',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
@@ -62,6 +63,7 @@ router.get('/courts',ctrlCourt.getCourts);
 router.post('/add-attendance', ctrlAttendance.addAttendance);
 router.get('/get-attend', ctrlAttendance.getAttend);
 router.get('/attends',ctrlAttendance.getAttends);
+router.get('/get-fallattend',ctrlAttendance.getFalAttend);
 
 //rank
 router.post('/add-rank', ctrlRanking.addRank);
@@ -86,6 +88,8 @@ router.get('/coach-user/:email', function(req, res) {
         }
     );
 });
+
+
 
 router.get('/user-find/:email', function(req, res) { 
     console.log("Got it for User"+req.params.email);
@@ -139,7 +143,7 @@ router.get('/attend-of/:date/:playerEmail', function(req, res) {
 
 router.get('/attend-of/:date', function(req, res) { 
     console.log("Got it"+req.params.date);
-    Attendance.find({ date: req.params.date},
+    Attendance.find({ date: req.params.date,done:"False"},
         (err, attend) => {
             if (!attend)
                 return res.status(404).json({ status: false, message: 'User record not found.' });

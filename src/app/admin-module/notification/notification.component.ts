@@ -18,7 +18,10 @@ import { Attendance } from 'src/app/model/attendance.model';
 export class NotificationComponent implements OnInit {
  today;
  currdate;
- notifications;
+ notifications:Attendance[];
+ newShed:Attendance;
+ showSuccessMessage;
+ serverErrorMessages
   constructor(private router:Router,private attendService:AttendanceService) { }
 
   ngOnInit(): void {
@@ -27,8 +30,23 @@ export class NotificationComponent implements OnInit {
     this.attendService.getattendd(this.currdate).subscribe((data:Attendance[])=>this.notifications=data);
   }
   
-  onSchedule(email:string){
-    localStorage.setItem('sessname',email);
+  onSchedule(notif:Attendance){
+    localStorage.setItem('sessname',notif.playerEmail);
+    //this.newShed = new Attendance(notif.playerEmail,notif.date,notif.time,notif.message);
+    //this.newShed.done = "True";
+    this.attendService.updateAttend(notif).subscribe(
+      res => {
+        this.showSuccessMessage = true;
+        setTimeout(() => this.showSuccessMessage = false, 4000);
+      },
+      err => {
+        if (err.status === 422) {
+          this.serverErrorMessages = err.error.join('<br/>');
+        }
+        else
+          this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+      }
+    );;
     this.router.navigate(['/schedule']);
   }
   

@@ -8,7 +8,8 @@ module.exports.addAttendance = (req, res, next) => {
     var attendance = new Attendance();
     attendance.playerEmail = req.body.playerEmail;
     attendance.date = req.body.date;
-	attendance.time = req.body.time;
+    attendance.time = req.body.time;
+    attendance.done = "False";
     attendance.message = req.body.message;
     attendance.save((err, doc) => {
         if (!err)
@@ -21,6 +22,32 @@ module.exports.addAttendance = (req, res, next) => {
         }
 
     });
+}
+
+
+module.exports.updateAttend = (req, res, next) => {
+   console.log("UPDATE Attendance"+req.body.playerEmail);
+   var userr = {
+    playerEmail: req.body.playerEmail,
+    date: req.body.date,
+    time: req.body.time,
+    done: "True",
+    message: req.body.message,
+   };
+   Attendance.findOne({ playerEmail: req.body.playerEmail,date:req.body.date,time: req.body.time,message: req.body.message },
+    (err, userrv) => {
+                Attendance.findByIdAndUpdate(userrv._id,{$set: userr},{new:true},(err,doc)=>{
+                    if(!err){ 
+                       console.log(" NO ERROR ");
+                       res.send(doc); 
+                   }
+                   else{
+                       console.log("ERROR ");
+                       return res.status(404).json({ status: false, message: 'Error updating User' });
+                   }
+               });
+        }
+    );  
 }
 
 /*module.exports.update = (req, res, next) => {
@@ -48,6 +75,17 @@ module.exports.addAttendance = (req, res, next) => {
  
 module.exports.getAttend = (req, res, next) =>{
     Attendance.findOne({ _id: req._id },
+        (err, sess) => {
+            if (!sess)
+                return res.status(404).json({ status: false, message: 'session record not found.' });
+            else
+                return res.json(sess);
+        }
+    );
+}
+
+module.exports.getFalAttend = (req, res, next) =>{
+    Attendance.find({ done: "False" },
         (err, sess) => {
             if (!sess)
                 return res.status(404).json({ status: false, message: 'session record not found.' });
