@@ -67,6 +67,8 @@ backgroundSize: 'cover'}">
     <div *ngIf="signUpForm.submitted && !SessionID.valid">
       <label class="validation-message">This field is required.</label>
     </div><br>
+    <p> <small>Prefered SessionID: (Email_TodayDate_Time) eg. abc@gmail.com_010620_847</small></p>
+
     
     <input type="text" #OpponentName="ngModel" [(ngModel)]="userService.selectedSession.OpponentName" name="OpponentName" placeholder="OpponentName"
     required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !OpponentName.valid }">

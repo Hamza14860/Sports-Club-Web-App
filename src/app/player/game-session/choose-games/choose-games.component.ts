@@ -87,6 +87,7 @@ export class ChooseGamesComponent implements OnInit {
   
       if(this.attendances.length>0)
       {
+        
         console.log("Attendace Already Marked for today");
           this.marked = true;
           this.buttonText = "Attendance Already Marked For Today";

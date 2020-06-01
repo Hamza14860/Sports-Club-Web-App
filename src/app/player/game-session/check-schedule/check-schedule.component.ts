@@ -30,6 +30,7 @@ export class CheckScheduleComponent implements OnInit {
   coachG=" NA";
   timeG=" NA";
   courtG=" NA";
+  gameG="NA";
   constructor(private http: HttpClient,private sessionService: SessionService, private userService: UserService,private router : Router) { 
     this.today = new Date();
     this.currdate = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
@@ -46,6 +47,7 @@ export class CheckScheduleComponent implements OnInit {
 
           if (element.PlayerID == this.userDetails.email && element.Date ==this.currdate){
             console.log( "Session Found: "+ element.SessionID);
+            this.gameG = " "+ element.Game;
             this.coachG= " "+ element.CoachID;
             this.timeG = " "+ element.Time;
             this.courtG = " "+ element.Court;
