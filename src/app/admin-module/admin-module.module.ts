@@ -25,6 +25,8 @@ import { UpdateCoachComponent } from './update-coach/update-coach.component';
 import { AdminAuthComponent } from './admin-auth/admin-auth.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { AddCourtComponent } from './add-court/add-court.component';
+import { ViewCourtsComponent } from './view-courts/view-courts.component';
 
 
 
@@ -40,6 +42,8 @@ import { ScheduleComponent } from './schedule/schedule.component';
     AdminAuthComponent,
     NotificationComponent,
     ScheduleComponent,
+    AddCourtComponent,
+    ViewCourtsComponent,
   // PlayerCreateComponent,
   // PlayerEditComponent,
   // PlayerListComponent

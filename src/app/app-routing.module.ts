@@ -36,6 +36,8 @@ import {CoachAuthComponent} from './coach-module/coach-auth/coach-auth.component
 import {CoachHomeComponent} from './coach-module/coach-home/coach-home.component';
 import {CoachRanksComponent} from './coach-module/coach-ranks/coach-ranks.component';
 import {SchedComponent} from './coach-module/sched/sched.component';
+import { AddCourtComponent } from './admin-module/add-court/add-court.component';
+import { ViewCourtsComponent } from './admin-module/view-courts/view-courts.component';
 
 
 
@@ -66,6 +68,8 @@ const routes: Routes = [
   { path: 'coach-rank', component: CoachRanksComponent } ,
   { path: 'coach-sched', component: SchedComponent } ,
 
+  { path: 'add-court', component: AddCourtComponent } ,
+  { path: 'view-courts', component: ViewCourtsComponent } ,
 
   { 
     path: 'signup', component: UserComponent,
@@ -99,33 +103,6 @@ const routes: Routes = [
 
   ]
    },
-
-
-  // { 
-  //   path: 'playerhome', component: PlayerComponent,
-  //   children: [{ path: '', component: PlayerHomeComponent}]
-  // },
-  // { 
-  //   path: 'gamesession', component: PlayerComponent,
-  //   children: [{ path: '', component: GameSessionComponent,}]
-  // },
-  // { 
-  //   path: 'userprofile', component: PlayerComponent,
-  //   children: [{ path: '', component: UserProfileComponent, canActivate: [AuthGuard] }]
-  // },
-  // { 
-  //   path: 'attendance', component: GameSessionComponent,
-  //   children: [{ path: '', component: AttendanceComponent}]
-  // },
-  // { 
-  //   path: 'choosegames', component: GameSessionComponent,
-  //   children: [{ path: '', component: ChooseGamesComponent}]
-  // },
-  // { 
-  //   path: 'checkschedule', component: GameSessionComponent,
-  //   children: [{ path: '', component: CheckScheduleComponent}]
-  // },
-
 
 
   {

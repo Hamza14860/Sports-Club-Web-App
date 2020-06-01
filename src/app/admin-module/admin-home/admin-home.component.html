@@ -30,20 +30,48 @@
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item">
-          <a routerLink="/add-coach" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+          <a routerLink="/add-court" style="color: rgb(77, 255, 101);" class="nav-link btn btn-outline-success ">
+            Add Court
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/view-courts" style="color: rgb(77,255,101);" class="nav-link btn btn-outline-success ">
+            View Courts
+          </a>
+        </li>
+        <li class="nav-item">
+          <a  style="color: rgb(255,77,77);" class="nav-link ">
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/add-coach" style="color: rgb(77, 234, 255);" class="nav-link btn btn-outline-primary ">
             Add Users
           </a>
         </li>
+
         <li class="nav-item">
-          <a routerLink="/admin-view" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+          <a routerLink="/admin-view" style="color: rgb(77, 234, 255);" class="nav-link btn btn-outline-primary ">
             View Users
           </a>
         </li>
+        
         <li class="nav-item">
-          <a routerLink="/notifications" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
-            Notification
+          <a  style="color: rgb(255,77,77);" class="nav-link ">
           </a>
         </li>
+
+        <li class="nav-item">
+          <a routerLink="/notifications" style="color: rgb(248, 229, 53);" class="nav-link btn btn-outline-warning ">
+            Notifications
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a  style="color: rgb(255,77,77);" class="nav-link ">
+          </a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link btn btn-outline-danger" (click)="onLogout()" style="color: rgb(255,51,51);">
           Logout  <span class="sr-only">(current)</span>
@@ -72,17 +100,17 @@
       </div> -->
       <blockquote class="blockquote text-center">
           <h1 class="display-4 redText" >
-              <strong>FAST SPORTS</strong>
+              <strong>ADMIN VIEW</strong>
           </h1>
-          <footer class="blockquote-footer redText"><cite title="Source Title" >Train . Compete . Win</cite></footer>
+          <footer class="blockquote-footer redText"><cite title="Source Title" >FAST SPORTS</cite></footer>
       </blockquote>
       
-
+<!-- 
       <p class="md-4 d-none d-md-block redText">
           <strong>A Sports Club with top class sporting facilities. </strong>
-      </p>
+      </p> -->
 
-    <a routerLink="/admin-view" class="btn btn-danger btn-lg">View Users
+    <a routerLink="/admin-view" class="btn btn-danger btn-lg">Manage Users
     </a>
   </div>
   <!-- Content -->

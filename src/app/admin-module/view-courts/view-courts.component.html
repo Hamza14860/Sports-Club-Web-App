@@ -1,0 +1,164 @@
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background: black;">
+    <div class="container">
+  
+      <!-- Brand -->
+      <a class="navbar-brand" routerLink="/admin-home">
+        <img src="./assets/images/logo.png" style="height: 70px; width: 60px" class="navbar-brand" alt="FAST SPORTS">			
+        <strong style="color: rgb(255,51,51);">FAST SPORTS</strong>
+      </a>
+  
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-brand" style="margin-left: 25%;">
+        <h4>Courts</h4>			
+        <!--  <strong style="color: rgb(255,51,51);">OPERATIONS</strong> -->
+      </div>
+      <!-- Links -->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+  
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active ">
+            <a class="nav-link" routerLink="/home" style="color: rgb(255,51,51);">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+           -->
+        </ul>
+  
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+         <li>
+          <a routerLink="/admin-home" style="color: rgb(255,77,77);" class="nav-link btn btn-outline-danger ">
+            Home
+          </a>
+         </li>
+        </ul>
+  
+      </div>
+  
+    </div>
+  </nav>
+<div  class="view" style="background-image: url('./assets/images/back5.jpg'); background-repeat: no-repeat; background-size: cover;">
+  <div style="height: 150px;">
+
+  </div>
+<div style="margin-top: 10px;margin-left: 75%;">
+    <!-- <button (click)="shCoach()" class="btn btn-danger">Courts</button>-->
+    <button (click)="shCreate()" class="btn btn-warning">Add Court</button> 
+
+
+</div>
+
+<div style="margin-left: 15%;margin-right: 15%;">
+  <div *ngIf="value== 'court'">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+          <h2 style="color: red;">Courts List</h2>
+          </div>
+          <div class="panel-body">
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <th>Court No</th>
+                  <th>Court Name</th>
+                  <th>Game Name</th>
+                  <th>Availability</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let court of courts">
+                  <td>{{court.CourtNo}}</td>
+                  <td>{{court.courtName}}</td>
+                  <td>{{court.gameName}}</td>
+                  <td>{{court.isFree}}</td>
+
+                  
+              </tr>
+              </tbody>
+          </table>
+          </div>
+      </div>
+      <div style="height: 150px;">
+
+      </div>
+  </div>
+</div>
+
+
+<!-- <div style="margin-left: 15%;margin-right: 15%;">
+  <div *ngIf="value=='coach'">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+          <h2 style="color: red;">Coaches List</h2>
+          </div>
+          <div class="panel-body">
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let coach of coaches">
+                  <td>{{coach.name.split(' ')[0]}}</td>
+                  <td>{{coach.name.split(' ')[1]}}</td>
+                  <td>{{coach.email}}</td>
+                  <td><button (click)="coachDelete(coach._id)" class="btn btn-danger">Delete</button>
+                      <button (click)="coachUpdate(coach.email)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+          </div>
+      </div>
+      <div style="height: 100px;">
+
+      </div>
+  </div>
+</div> -->
+</div>
+
+
+
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn" style="background: black;">
+  <hr class="my-4">
+
+  <div class="row" style="margin-top: 10px;">
+      <div class="col-md-4">
+          <h6 class="redText">Contact Us</h6>
+        <p class="text-muted"><small>fast.sports@gmail.com</small></p>
+        <p class="text-muted"><small>00923452345321</small></p>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-outline-danger"  role="button" style="color: white;">About Us
+            </a>
+        </div>
+        <div class="col-md-4">
+          <h6 class="redText">Location</h6>
+          <p class="text-muted"><small>i-9/3, Islamabad</small></p>
+        </div>
+  </div>
+  
+
+  <hr class="my-4">
+
+
+  <!--Copyright-->
+  <div class="footer-copyright py-3 redText">
+    <small>© 2020 Copyright: </small>
+    <a href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank"><small> Hamza Azam, Anees ul Anwar, Bilal</small></a>
+  </div>
+  <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
