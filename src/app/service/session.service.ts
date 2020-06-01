@@ -33,7 +33,7 @@ export class SessionService {
   constructor(private http: HttpClient) { }
 
   //Http Methods
-    
+  //Create Game Session  
   postSession(user: Session){
     return this.http.post(environment.apiBaseUrl+'/add-session',user,this.noAuthHeader);
   }

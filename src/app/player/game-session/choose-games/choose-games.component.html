@@ -17,7 +17,7 @@
 
         <mat-form-field style="width: 70%;">
             <mat-label for="timeInput">Time (12:00PM-09:00PM):</mat-label>
-            <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [(ngModel)]='time' [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00"/>    
+            <input matInput [formControl]="timeControl" type="time" id="timeInput" name="time" [(ngModel)]='time' [value]="time" placeholder="HH:mm:ss" min="12:00:00" max="21:00:00" required/>    
         </mat-form-field>      
 
         <div class="row" >

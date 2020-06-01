@@ -32,6 +32,12 @@ export class ChooseGamesComponent implements OnInit {
   timeControl = new FormControl();
 
   constructor(public userService: UserService) {
+    this.today = new Date();
+    this.currdate = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
+    this.currtime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
+    console.log(this.currdate);
+    console.log(this.currtime);
+
     this.gameForm = new FormGroup({
       game: this.gameControl,
       time: this.timeControl
@@ -44,6 +50,9 @@ export class ChooseGamesComponent implements OnInit {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];  
+
+        this.userService.getattends(this.currdate,this.userDetails.email).subscribe((data: Attendance[]) => this.attendances = data);
+        console.log(this.userDetails.email+" "+this.attendances);
       },
       err => { 
         console.log(err);   
@@ -56,11 +65,7 @@ export class ChooseGamesComponent implements OnInit {
     console.log(this.gameControl.value);
     console.log(this.timeControl.value );
 
-    this.today = new Date();
-    this.currdate = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
-    this.currtime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
-    console.log(this.currdate);
-    console.log(this.currtime);
+   
 
     var messageToSend = this.gameControl.value + " "+ this.timeControl.value;
     this.attendance = new Attendance(this.userDetails.email,this.currdate,this.currtime,messageToSend);
@@ -71,25 +76,28 @@ export class ChooseGamesComponent implements OnInit {
     // console.log(this.attendance.time);
     // console.log(this.attendance.message);
 
-    this.userService.getattends(this.currdate,this.attendance.playerEmail).subscribe((data: Attendance[]) => this.attendances = data);
+    // this.userService.getattends(this.currdate,this.attendance.playerEmail).subscribe((data: Attendance[]) => this.attendances = data);
 
     if(this.attendances.length>0)
     {
+      console.log("Attendace Already Marked for today");
         this.marked = true;
+        this.buttonText = "Attendance Already Marked For Today";
+
     }
 
-    if(this.marked)
+    if(this.marked == false)
     {
       this.buttonText = "Attendance Marked";
     }
 
 
 
-    if(!this.marked && this.buttonText != "Attendance Marked"){
+    if(!this.marked && this.buttonText == "Attendance Marked"){
       this.userService.postAttendance(this.attendance).subscribe(
         res => {
           console.log("Attendance Marked");
-          this.buttonText = "Attendance Marked";
+          //this.buttonText = "Attendance Marked";
         },
         err => {
           console.log("ERROR");
